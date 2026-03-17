@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>ZEKIT — Connexion</title>
+<style>body{background:#060606;color:#d6f500;font-family:monospace;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;flex-direction:column;gap:16px;}
+.mark{width:52px;height:52px;background:#d6f500;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:900;color:#000;}
+.msg{font-size:14px;letter-spacing:3px;text-transform:uppercase;}
+.sub{font-size:11px;color:#555;letter-spacing:2px;}</style>
+</head>
+<body>
+<div class="mark">Z.</div>
+<div class="msg">Connexion reussie</div>
+<div class="sub">Redirection...</div>
+<script>
+// OAuth implicit flow — le token est dans le hash
+// On le passe a la page principale via sessionStorage puis redirect
+var hash = window.location.hash;
+if (hash) {
+  // Stocker le hash OAuth pour que index.html le recupere
+  sessionStorage.setItem('oauth_callback', hash.slice(1));
+  window.location.replace('/#activate');
+}
+</script>
+</body>
+</html>
