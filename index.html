@@ -3,295 +3,245 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZEKIT v1 — 14 outils. Windows.</title>
+<title>ZEKIT — 14 outils. Windows.</title>
 <meta name="description" content="ZEKIT v1 — 14 outils professionnels dans une seule application Windows. Connexion Discord requise.">
 <meta property="og:title" content="ZEKIT v1">
 <meta property="og:description" content="14 outils professionnels dans une seule app Windows.">
 <meta property="og:url" content="https://zekit.fr">
 <link rel="canonical" href="https://zekit.fr">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Barlow+Condensed:ital,wght@0,700;0,800;0,900;1,800&family=Barlow:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Sora:wght@300;400;500;600;700;800&display=swap');
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 :root{
-  --bg:#060606;--s:#0d0d0d;--b:#1a1a1a;--b2:#272727;
-  --acc:#d6f500;--acc-dim:rgba(214,245,0,.06);
-  --gold:#FFD700;--gold-dim:rgba(255,215,0,.06);
-  --t:#efefef;--t2:#888;--t3:#3a3a3a;
-  --mono:'JetBrains Mono',monospace;
-  --disp:'Barlow Condensed',sans-serif;
-  --body:'Barlow',sans-serif;
+  --bg:#07070a;--s:#0f0f14;--b:#1c1c24;--b2:#26262f;
+  --acc:#d6f500;--acc2:#bde000;
+  --gold:#FFD700;
+  --t:#f0f0f5;--t2:#8888a0;--t3:#3a3a4a;
+  --sans:'Sora',sans-serif;--mono:'JetBrains Mono',monospace;
+  --r:18px;
 }
 html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--t);font-family:var(--body);font-size:15px;line-height:1.6;overflow-x:hidden;}
-body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:999;opacity:.5;}
+body{background:var(--bg);color:var(--t);font-family:var(--sans);overflow-x:hidden;}
+
+/* ── NOISE ── */
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");pointer-events:none;z-index:999;opacity:.4;}
 
 /* ── NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;height:60px;padding:0 52px;display:flex;align-items:center;justify-content:space-between;background:rgba(6,6,6,.94);backdrop-filter:blur(24px);border-bottom:1px solid var(--b);}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;padding:0 48px;display:flex;align-items:center;justify-content:space-between;transition:background .3s,border .3s;}
+nav.scrolled{background:rgba(7,7,10,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--b);}
 .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
-.nav-logo-mark{width:34px;height:34px;background:var(--acc);border-radius:5px;display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-weight:900;font-size:19px;color:#000;letter-spacing:-1px;}
-.nav-logo-name{font-family:var(--disp);font-weight:800;font-size:18px;letter-spacing:5px;text-transform:uppercase;color:var(--t);}
-.nav-center{display:flex;gap:32px;list-style:none;}
-.nav-center a{font-family:var(--mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--t2);text-decoration:none;transition:color .15s;}
-.nav-center a:hover{color:var(--t);}
-.nav-right{display:flex;align-items:center;gap:10px;}
-.nav-badge{font-family:var(--mono);font-size:8px;letter-spacing:2px;padding:4px 10px;border:1px solid var(--b2);color:var(--t3);text-transform:uppercase;}
+.nav-logo-mark{width:38px;height:38px;background:var(--acc);border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:700;font-size:17px;color:#000;}
+.nav-logo-name{font-family:var(--mono);font-weight:700;font-size:16px;letter-spacing:3px;text-transform:uppercase;color:var(--t);}
+.nav-links{display:flex;gap:36px;list-style:none;}
+.nav-links a{font-size:14px;font-weight:500;color:var(--t2);text-decoration:none;transition:color .15s;}
+.nav-links a:hover{color:var(--t);}
+.nav-right{display:flex;align-items:center;gap:12px;}
+.btn-nav{padding:10px 22px;background:var(--acc);color:#000;border:none;border-radius:50px;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:8px;}
+.btn-nav:hover{background:var(--acc2);transform:translateY(-1px);box-shadow:0 8px 28px rgba(214,245,0,.25);}
 #nav-user{display:none;align-items:center;gap:8px;}
-#nav-avatar{width:28px;height:28px;border-radius:50%;border:2px solid var(--acc);object-fit:cover;}
-#nav-uname{font-family:var(--mono);font-size:9px;color:var(--t);}
-.btn-nav-logout{font-family:var(--mono);font-size:8px;letter-spacing:1px;padding:4px 10px;border:1px solid var(--b2);color:var(--t3);background:none;cursor:pointer;text-transform:uppercase;transition:all .15s;}
-.btn-nav-logout:hover{border-color:var(--acc);color:var(--acc);}
+#nav-avatar{width:32px;height:32px;border-radius:50%;border:2px solid var(--acc);object-fit:cover;}
+#nav-uname{font-size:13px;font-weight:600;color:var(--t);}
+.btn-logout{padding:7px 16px;background:transparent;border:1px solid var(--b2);border-radius:50px;font-size:12px;font-weight:600;color:var(--t2);cursor:pointer;transition:all .2s;}
+.btn-logout:hover{border-color:var(--acc);color:var(--acc);}
 
 /* ── HERO ── */
-.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:100px 52px 80px;position:relative;overflow:hidden;gap:64px;}
-.hero::before{content:'';position:absolute;top:-100px;right:36%;width:1px;height:160vh;background:linear-gradient(to bottom,transparent,rgba(214,245,0,.07) 30%,rgba(214,245,0,.07) 70%,transparent);transform:rotate(-8deg);}
-.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 80% 50%,rgba(214,245,0,.025),transparent);pointer-events:none;}
-.hero-left{position:relative;z-index:1;}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--acc);margin-bottom:22px;opacity:0;animation:up .6s ease .1s forwards;}
-.hero-eyebrow::before{content:'';width:20px;height:1px;background:var(--acc);}
-.hero-eyebrow-dot{width:4px;height:4px;border-radius:50%;background:var(--acc);animation:blink 2s ease infinite;}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.1}}
-h1.hero-t{font-family:var(--disp);font-weight:900;font-style:italic;font-size:clamp(86px,14vw,200px);letter-spacing:-2px;line-height:.86;opacity:0;animation:up .7s ease .2s forwards;}
-h1.hero-t em{font-style:normal;color:var(--acc);display:block;}
-.hero-sub{font-size:15px;font-weight:300;color:var(--t2);max-width:440px;line-height:1.9;margin:26px 0 44px;opacity:0;animation:up .7s ease .35s forwards;}
-.hero-sub strong{color:var(--t);font-weight:500;}
-.hero-sub .gold{color:var(--gold);font-weight:600;}
-.hero-cta{display:flex;flex-direction:column;gap:14px;opacity:0;animation:up .7s ease .5s forwards;}
-.btn-dl{display:inline-flex;align-items:center;gap:12px;padding:16px 40px;background:var(--acc);color:#000;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:all .2s;position:relative;overflow:hidden;width:fit-content;}
-.btn-dl::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.12),transparent);}
-.btn-dl:hover{transform:translateY(-3px);box-shadow:0 20px 52px rgba(214,245,0,.18);background:#c8e000;}
-.cta-meta{display:flex;gap:18px;font-family:var(--mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--t3);}
-.cta-meta span{display:flex;align-items:center;gap:5px;}
-.cta-meta span::before{content:'';width:3px;height:3px;border-radius:50%;background:var(--t3);display:block;}
-.hero-right{position:relative;z-index:1;opacity:0;animation:left .8s ease .3s forwards;}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 48px 80px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(ellipse,rgba(214,245,0,.06) 0%,transparent 70%);pointer-events:none;}
+.hero::after{content:'';position:absolute;bottom:-100px;right:-100px;width:500px;height:500px;background:radial-gradient(ellipse,rgba(255,215,0,.04) 0%,transparent 70%);pointer-events:none;}
+.hero-pill{display:inline-flex;align-items:center;gap:8px;padding:6px 16px 6px 6px;background:rgba(214,245,0,.07);border:1px solid rgba(214,245,0,.15);border-radius:50px;font-size:12px;font-weight:600;color:var(--acc);margin-bottom:28px;}
+.hero-pill-dot{width:6px;height:6px;border-radius:50%;background:var(--acc);animation:pulse 2s ease infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(214,245,0,.4)}50%{box-shadow:0 0 0 6px rgba(214,245,0,0)}}
+.hero-title{font-size:clamp(52px,8vw,96px);font-weight:800;letter-spacing:-2px;line-height:1;margin-bottom:22px;background:linear-gradient(135deg,#fff 40%,rgba(255,255,255,.6));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-title em{font-style:normal;-webkit-text-fill-color:var(--acc);}
+.hero-sub{font-size:17px;font-weight:300;color:var(--t2);max-width:560px;line-height:1.8;margin-bottom:40px;}
+.hero-sub strong{color:var(--t);font-weight:600;}
+.hero-sub .gold{color:var(--gold);}
+.hero-cta{display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;}
+.btn-hero-primary{display:inline-flex;align-items:center;gap:10px;padding:15px 32px;background:var(--acc);color:#000;border-radius:50px;font-size:14px;font-weight:700;text-decoration:none;transition:all .2s;border:none;cursor:pointer;}
+.btn-hero-primary:hover{background:var(--acc2);transform:translateY(-2px);box-shadow:0 16px 48px rgba(214,245,0,.2);}
+.btn-hero-secondary{display:inline-flex;align-items:center;gap:10px;padding:15px 32px;background:transparent;color:var(--t);border-radius:50px;font-size:14px;font-weight:600;text-decoration:none;transition:all .2s;border:1px solid var(--b2);}
+.btn-hero-secondary:hover{border-color:var(--acc);color:var(--acc);background:rgba(214,245,0,.04);}
+.hero-meta{display:flex;gap:24px;margin-top:20px;justify-content:center;flex-wrap:wrap;}
+.hero-meta span{font-size:12px;font-weight:500;color:var(--t3);display:flex;align-items:center;gap:6px;}
+.hero-meta span::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--t3);}
 
-/* ── APP MOCKUP ── */
-.app-mock{background:var(--s);border:1px solid var(--b2);border-radius:8px;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,.85),0 0 0 1px rgba(214,245,0,.03);}
-.app-bar{height:40px;background:var(--b);border-bottom:1px solid var(--b2);display:flex;align-items:center;padding:0 14px;gap:7px;}
-.app-dot{width:10px;height:10px;border-radius:50%;}
-.app-label{font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--t2);margin-left:8px;}
-.app-badge{margin-left:auto;font-family:var(--mono);font-size:8px;letter-spacing:2px;padding:2px 8px;background:rgba(214,245,0,.08);color:var(--acc);}
-.app-tabs{background:rgba(0,0,0,.4);border-bottom:1px solid var(--b);display:flex;gap:2px;padding:7px 12px;overflow-x:hidden;}
-.app-tab{padding:4px 12px;font-family:var(--mono);font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--t3);border-radius:3px;white-space:nowrap;}
-.app-tab.ac{background:var(--acc);color:#000;font-weight:700;}
-.app-tab.vp{background:rgba(255,215,0,.12);color:var(--gold);}
-.app-tab.dc{background:rgba(88,101,242,.15);color:#7289da;}
-.app-body{padding:20px;}
-.app-2col{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-.app-col-lbl{font-family:var(--mono);font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--t3);margin-bottom:8px;display:flex;align-items:center;gap:5px;}
-.app-col-lbl::before{content:'';width:2px;height:8px;background:var(--acc);display:block;}
-.app-editor{background:var(--bg);border:1px solid var(--b);border-radius:4px;padding:12px;font-family:var(--mono);font-size:10px;color:var(--t2);line-height:1.7;height:180px;overflow:hidden;}
-.app-preview{background:#090909;border:1px solid var(--b);border-radius:4px;padding:14px;height:180px;overflow:hidden;}
-.app-h1{font-family:var(--disp);font-size:22px;font-weight:800;color:var(--acc);border-bottom:1px solid var(--b);padding-bottom:6px;margin-bottom:8px;}
-.app-p{font-size:11px;color:#aaa;line-height:1.7;margin-bottom:7px;}
-.app-table{width:100%;border-collapse:collapse;}
-.app-table th{background:rgba(214,245,0,.06);padding:5px 8px;font-family:var(--mono);font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--acc);border:1px solid var(--b);text-align:left;}
-.app-table td{padding:5px 8px;border:1px solid var(--b);font-size:10px;color:#888;}
+/* ── APP PREVIEW SLIDER ── */
+.preview-section{padding:0 0 80px;overflow:hidden;position:relative;}
+.preview-section::before{content:'';position:absolute;left:0;top:0;bottom:0;width:120px;background:linear-gradient(to right,var(--bg),transparent);z-index:2;pointer-events:none;}
+.preview-section::after{content:'';position:absolute;right:0;top:0;bottom:0;width:120px;background:linear-gradient(to left,var(--bg),transparent);z-index:2;pointer-events:none;}
+.preview-track{display:flex;gap:20px;animation:slide 30s linear infinite;width:max-content;}
+.preview-track:hover{animation-play-state:paused;}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.preview-card{flex-shrink:0;width:320px;background:var(--s);border:1px solid var(--b);border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.5);}
+.preview-card-bar{height:32px;background:var(--b);display:flex;align-items:center;padding:0 12px;gap:5px;}
+.preview-dot{width:8px;height:8px;border-radius:50%;}
+.preview-tab{margin-left:10px;font-family:var(--mono);font-size:8px;letter-spacing:2px;color:var(--t2);}
+.preview-body{padding:14px;}
+.preview-tag{font-family:var(--mono);font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--acc);margin-bottom:8px;}
+.preview-content{font-size:11px;color:var(--t2);line-height:1.7;}
+.preview-h{font-family:var(--mono);font-size:14px;font-weight:700;color:var(--acc);margin-bottom:5px;}
+.preview-row{display:flex;gap:6px;margin-top:8px;}
+.preview-chip{padding:4px 10px;background:var(--b2);border-radius:50px;font-family:var(--mono);font-size:9px;color:var(--acc);}
+.preview-pass{font-family:var(--mono);font-size:13px;letter-spacing:2px;color:var(--t);background:var(--b2);padding:8px 12px;border-radius:8px;margin-top:8px;}
+.preview-strength{height:3px;border-radius:2px;margin-top:6px;background:linear-gradient(to right,#00e676 70%,var(--b2) 70%);}
+.preview-color{height:48px;border-radius:8px;margin-bottom:6px;}
+.preview-colors-row{display:flex;gap:4px;}
+.preview-color-sm{height:20px;flex:1;border-radius:4px;}
+.preview-qr{width:80px;height:80px;border:1px solid var(--b2);background:repeating-linear-gradient(0deg,transparent,transparent 9px,rgba(214,245,0,.06) 9px,rgba(214,245,0,.07) 10px),repeating-linear-gradient(90deg,transparent,transparent 9px,rgba(214,245,0,.06) 9px,rgba(214,245,0,.07) 10px);border-radius:6px;flex-shrink:0;}
+.preview-score{display:flex;align-items:center;gap:12px;}
+.preview-ring-wrap{position:relative;width:64px;height:64px;flex-shrink:0;}
+.preview-ring-wrap svg{transform:rotate(-90deg);}
+.preview-ring-label{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.preview-ring-pct{font-family:var(--mono);font-weight:700;font-size:14px;color:var(--gold);}
+.preview-ring-sub{font-family:var(--mono);font-size:7px;color:var(--gold);letter-spacing:1px;margin-top:1px;}
 
-/* ── STATS BAR ── */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--b);border-bottom:1px solid var(--b);background:var(--s);}
-.stat{padding:48px 20px;text-align:center;border-right:1px solid var(--b);position:relative;overflow:hidden;cursor:default;}
-.stat:last-child{border-right:none;}
-.stat::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--acc),transparent);transform:scaleX(0);transition:transform .4s;}
-.stat:hover::before{transform:scaleX(1);}
-.stat-n{font-family:var(--disp);font-weight:900;font-size:72px;line-height:1;color:var(--t);display:block;transition:color .2s;}
-.stat:hover .stat-n{color:var(--acc);}
-.stat-l{font-family:var(--mono);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--t2);margin-top:6px;display:block;}
+/* ── STATS ── */
+.stats-section{padding:80px 48px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--b);border-bottom:1px solid var(--b);}
+.stat-item{padding:40px 20px;text-align:center;border-right:1px solid var(--b);position:relative;}
+.stat-item:last-child{border-right:none;}
+.stat-item::before{content:'';position:absolute;top:0;left:20%;right:20%;height:2px;background:linear-gradient(to right,transparent,var(--acc),transparent);transform:scaleX(0);transition:transform .4s;}
+.stat-item:hover::before{transform:scaleX(1);}
+.stat-num{font-size:64px;font-weight:800;color:var(--t);letter-spacing:-2px;line-height:1;display:block;}
+.stat-lbl{font-size:13px;font-weight:500;color:var(--t2);margin-top:8px;display:block;}
 
-/* ── SECTION WRAPPER ── */
-.wrap{padding:120px 52px;position:relative;}
-.sec-eyebrow{font-family:var(--mono);font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--acc);display:flex;align-items:center;gap:12px;margin-bottom:14px;}
-.sec-eyebrow::before{content:'';width:18px;height:1px;background:var(--acc);}
-.sec-title{font-family:var(--disp);font-weight:900;font-size:clamp(50px,8vw,108px);letter-spacing:-1px;line-height:.9;color:var(--t);margin-bottom:56px;}
-.sec-title em{font-style:italic;color:var(--acc);}
+/* ── SECTION ── */
+.section{padding:100px 48px;}
+.sec-pill{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;background:rgba(214,245,0,.06);border:1px solid rgba(214,245,0,.12);border-radius:50px;font-size:11px;font-weight:600;color:var(--acc);letter-spacing:1px;text-transform:uppercase;margin-bottom:16px;}
+.sec-title{font-size:clamp(36px,5vw,60px);font-weight:800;letter-spacing:-1.5px;color:var(--t);line-height:1.05;margin-bottom:14px;}
+.sec-title em{font-style:normal;color:var(--acc);}
+.sec-sub{font-size:16px;font-weight:300;color:var(--t2);max-width:520px;line-height:1.8;margin-bottom:52px;}
 
 /* ── TOOLS GRID ── */
-.tools-grid{display:grid;grid-template-columns:repeat(7,1fr);border:1px solid var(--b);}
-.tool{padding:28px 22px;border-right:1px solid var(--b);border-bottom:1px solid var(--b);position:relative;overflow:hidden;transition:background .2s;cursor:default;}
-.tool:nth-child(7n){border-right:none;}
-.tool:nth-last-child(-n+7){border-bottom:none;}
-.tool::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--tc,var(--acc));transform:scaleX(0);transform-origin:left;transition:transform .3s;}
-.tool:hover::before{transform:scaleX(1);}
-.tool::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(214,245,0,.04),transparent 60%);opacity:0;transition:opacity .3s;}
-.tool:hover::after{opacity:1;}
-.tool-num{font-family:var(--mono);font-size:9px;color:var(--t3);margin-bottom:14px;letter-spacing:1px;}
-.tool-ico{width:32px;height:32px;border:1px solid var(--b2);border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;font-weight:700;color:var(--t2);margin-bottom:12px;background:var(--s);}
-.tool-name{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--t);margin-bottom:5px;}
-.tool-desc{font-size:11px;font-weight:300;color:var(--t2);line-height:1.6;}
-.tool-new{position:absolute;top:8px;right:8px;font-family:var(--mono);font-size:7px;font-weight:700;letter-spacing:1px;padding:2px 6px;background:var(--acc);color:#000;border-radius:2px;}
-.tool-vip{position:absolute;top:8px;right:8px;font-family:var(--mono);font-size:7px;font-weight:700;letter-spacing:1px;padding:2px 6px;background:var(--gold);color:#000;border-radius:2px;}
-
-/* ── VIP SECTION ── */
-.vip-wrap{padding:0 52px 120px;}
-.vip-card{position:relative;overflow:hidden;border:1px solid rgba(255,215,0,.15);padding:60px 56px;background:linear-gradient(135deg,rgba(255,215,0,.03) 0%,transparent 60%);}
-.vip-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
-.vip-card::after{content:'VIP';position:absolute;right:-20px;top:50%;transform:translateY(-50%);font-family:var(--disp);font-weight:900;font-size:200px;color:rgba(255,215,0,.025);letter-spacing:-6px;pointer-events:none;line-height:1;}
-.vip-badge{display:inline-flex;align-items:center;gap:7px;padding:5px 14px;background:rgba(255,215,0,.1);border:1px solid rgba(255,215,0,.2);border-radius:20px;font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
-.vip-title{font-family:var(--disp);font-weight:900;font-style:italic;font-size:clamp(44px,7vw,90px);line-height:.9;color:var(--gold);letter-spacing:-1px;margin-bottom:16px;}
-.vip-desc{font-size:14px;font-weight:300;color:var(--t2);max-width:520px;line-height:1.85;margin-bottom:36px;}
-.vip-feats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;max-width:540px;margin-bottom:36px;}
-.vip-feat{display:flex;align-items:flex-start;gap:10px;padding:14px 16px;background:rgba(255,215,0,.04);border:1px solid rgba(255,215,0,.09);border-radius:4px;transition:background .15s;}
-.vip-feat:hover{background:rgba(255,215,0,.07);}
-.vip-feat-star{color:var(--gold);font-size:14px;flex-shrink:0;margin-top:1px;}
-.vip-feat-title{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--t);margin-bottom:3px;}
-.vip-feat-desc{font-size:11px;font-weight:300;color:var(--t2);line-height:1.55;}
-.btn-vip{display:inline-flex;align-items:center;gap:10px;padding:15px 36px;background:linear-gradient(135deg,var(--gold),#ff9500);color:#000;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:all .2s;border:none;cursor:pointer;}
-.btn-vip:hover{transform:translateY(-3px);box-shadow:0 16px 48px rgba(255,215,0,.22);}
+.tools-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+.tool-card{background:var(--s);border:1px solid var(--b);border-radius:16px;padding:22px;position:relative;overflow:hidden;transition:all .25s;cursor:default;}
+.tool-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(214,245,0,.04),transparent 60%);opacity:0;transition:opacity .3s;}
+.tool-card:hover::before{opacity:1;}
+.tool-card:hover{border-color:var(--b2);transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,.5);}
+.tool-card-num{font-family:var(--mono);font-size:10px;color:var(--t3);margin-bottom:14px;letter-spacing:2px;}
+.tool-card-ico{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;font-weight:700;margin-bottom:12px;}
+.tool-card-name{font-size:14px;font-weight:700;color:var(--t);margin-bottom:5px;}
+.tool-card-desc{font-size:12px;font-weight:300;color:var(--t2);line-height:1.6;}
+.tool-badge{position:absolute;top:14px;right:14px;padding:3px 8px;border-radius:50px;font-size:9px;font-weight:700;letter-spacing:1px;}
+.badge-new{background:rgba(214,245,0,.15);color:var(--acc);}
+.badge-vip{background:rgba(255,215,0,.15);color:var(--gold);}
 
 /* ── FEATURES ── */
-.feats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--b);}
-.feat{background:var(--bg);padding:44px 36px;position:relative;overflow:hidden;transition:background .25s;}
-.feat:hover{background:var(--s);}
-.feat-line{position:absolute;top:0;left:36px;right:36px;height:1px;background:linear-gradient(90deg,transparent,rgba(214,245,0,.2),transparent);transform:scaleX(0);transition:transform .5s;}
-.feat:hover .feat-line{transform:scaleX(1);}
-.feat-num{font-family:var(--disp);font-size:80px;font-weight:900;color:rgba(214,245,0,.05);line-height:1;margin-bottom:-10px;}
-.feat-title{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--t);margin-bottom:10px;}
-.feat-desc{font-size:13px;font-weight:300;color:var(--t2);line-height:1.8;}
+.feats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.feat-card{background:var(--s);border:1px solid var(--b);border-radius:20px;padding:32px;position:relative;overflow:hidden;transition:all .25s;}
+.feat-card::after{content:attr(data-num);position:absolute;right:-10px;top:-10px;font-size:100px;font-weight:800;color:rgba(255,255,255,.02);line-height:1;pointer-events:none;}
+.feat-card:hover{border-color:var(--b2);box-shadow:0 12px 40px rgba(0,0,0,.4);}
+.feat-card-icon{width:44px;height:44px;border-radius:12px;background:rgba(214,245,0,.08);border:1px solid rgba(214,245,0,.15);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:18px;}
+.feat-card-title{font-size:18px;font-weight:700;color:var(--t);margin-bottom:8px;}
+.feat-card-desc{font-size:13px;font-weight:300;color:var(--t2);line-height:1.8;}
 
-/* ── DEMO INTERACTIVE ── */
-.demo-wrap{border:1px solid var(--b2);border-radius:8px;overflow:hidden;box-shadow:0 60px 120px rgba(0,0,0,.9),0 0 0 1px rgba(214,245,0,.03);}
-.demo-bar{height:40px;background:#0a0a0a;border-bottom:1px solid var(--b);display:flex;align-items:center;padding:0 14px;gap:7px;}
-.demo-dot{width:10px;height:10px;border-radius:50%;}
-.demo-lbl{font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--t2);margin-left:8px;}
-.demo-tag{margin-left:auto;font-family:var(--mono);font-size:8px;letter-spacing:2px;padding:3px 10px;border:1px solid rgba(214,245,0,.15);color:rgba(214,245,0,.5);}
-.demo-tabs{background:#070707;border-bottom:1px solid var(--b);display:flex;gap:2px;padding:7px 12px;overflow-x:auto;scrollbar-width:none;}
-.demo-tabs::-webkit-scrollbar{display:none;}
-.d-tab{padding:5px 12px;font-family:var(--mono);font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--t3);border:1px solid transparent;border-radius:4px;cursor:pointer;transition:all .18s;white-space:nowrap;background:none;}
-.d-tab:hover{color:var(--t);border-color:var(--b2);}
-.d-tab.active{background:var(--acc);color:#000;font-weight:700;}
-.d-tab.vip-tab.active{background:var(--gold);color:#000;}
-.demo-body{background:#050505;min-height:340px;}
-.d-panel{display:none;padding:24px;animation:dfade .2s ease;}
-.d-panel.active{display:block;}
-@keyframes dfade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
-.d-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-.d-lbl{font-family:var(--mono);font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--t3);margin-bottom:8px;display:flex;align-items:center;gap:6px;}
-.d-lbl::before{content:'';width:2px;height:8px;background:var(--acc);border-radius:1px;display:block;}
-.d-lbl.gold::before{background:var(--gold);}
-.d-fake-input{height:36px;background:#0c0c0c;border:1px solid var(--b2);border-radius:4px;padding:0 12px;display:flex;align-items:center;font-family:var(--mono);font-size:11px;color:var(--acc);}
-.d-fake-textarea{background:#0c0c0c;border:1px solid var(--b2);border-radius:4px;padding:10px 12px;font-family:var(--mono);font-size:10px;color:var(--t2);line-height:1.7;overflow:hidden;}
-.d-output{background:#0a0a0a;border:1px solid var(--b);border-radius:4px;padding:12px 14px;font-family:var(--mono);font-size:11px;color:var(--acc);word-break:break-all;min-height:44px;}
-.d-btn{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:4px;border:none;font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:default;margin-right:6px;}
-.d-btn-acc{background:var(--acc);color:#000;}
-.d-btn-sec{background:var(--b2);color:var(--t2);}
-.d-btn-gold{background:var(--gold);color:#000;}
-.d-badge{display:inline-block;padding:2px 8px;border-radius:2px;font-family:var(--mono);font-size:9px;margin:2px;}
-.d-ok{background:rgba(0,230,118,.1);color:#00e676;}
-.d-err{background:rgba(255,61,61,.1);color:#ff4d4d;}
-.d-chips{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;}
-.d-chip{background:var(--b2);border-radius:3px;padding:7px 10px;font-family:var(--mono);font-size:10px;color:var(--acc);}
-.d-color-row{display:flex;gap:5px;margin-top:8px;}
-.d-swatch{height:36px;border-radius:3px;flex:1;}
-.d-qr{width:80px;height:80px;border:1px solid var(--b2);background:repeating-linear-gradient(0deg,transparent,transparent 9px,rgba(214,245,0,.06) 9px,rgba(214,245,0,.06) 10px),repeating-linear-gradient(90deg,transparent,transparent 9px,rgba(214,245,0,.06) 9px,rgba(214,245,0,.06) 10px);}
-.d-score-ring{position:relative;width:80px;height:80px;flex-shrink:0;}
-.d-score-ring svg{transform:rotate(-90deg);}
-.d-score-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
-.d-score-pct{font-family:var(--disp);font-weight:900;font-size:20px;line-height:1;color:var(--t);}
-.d-score-lbl{font-family:var(--mono);font-size:7px;letter-spacing:1px;text-transform:uppercase;color:#00e676;margin-top:1px;}
-.d-notice{font-family:var(--mono);font-size:8px;letter-spacing:2px;text-transform:uppercase;color:rgba(214,245,0,.22);text-align:center;padding:8px;border:1px dashed rgba(214,245,0,.07);border-radius:4px;margin-top:14px;}
-.d-notice-vip{font-family:var(--mono);font-size:8px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,215,0,.3);text-align:center;padding:8px;border:1px dashed rgba(255,215,0,.1);border-radius:4px;margin-top:14px;}
+/* ── VIP ── */
+.vip-section{padding:0 48px 100px;}
+.vip-card{border-radius:24px;border:1px solid rgba(255,215,0,.15);background:linear-gradient(135deg,rgba(255,215,0,.04) 0%,rgba(255,149,0,.02) 100%);padding:56px;position:relative;overflow:hidden;}
+.vip-card::before{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;background:radial-gradient(ellipse,rgba(255,215,0,.06),transparent 70%);pointer-events:none;}
+.vip-pill{display:inline-flex;align-items:center;gap:6px;padding:5px 16px;background:rgba(255,215,0,.1);border:1px solid rgba(255,215,0,.2);border-radius:50px;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:18px;}
+.vip-title{font-size:clamp(36px,5vw,64px);font-weight:800;letter-spacing:-1.5px;color:var(--gold);line-height:1.05;margin-bottom:14px;}
+.vip-desc{font-size:16px;font-weight:300;color:var(--t2);max-width:520px;line-height:1.8;margin-bottom:36px;}
+.vip-feats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:580px;margin-bottom:36px;}
+.vip-feat{display:flex;align-items:flex-start;gap:12px;padding:16px;background:rgba(255,215,0,.04);border:1px solid rgba(255,215,0,.09);border-radius:14px;transition:background .15s;}
+.vip-feat:hover{background:rgba(255,215,0,.07);}
+.vip-feat-star{width:30px;height:30px;border-radius:8px;background:rgba(255,215,0,.1);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.vip-feat-title{font-size:13px;font-weight:700;color:var(--t);margin-bottom:3px;}
+.vip-feat-desc{font-size:11px;font-weight:300;color:var(--t2);line-height:1.6;}
+.btn-vip{display:inline-flex;align-items:center;gap:10px;padding:14px 32px;background:linear-gradient(135deg,var(--gold),#ff9500);color:#000;border-radius:50px;font-size:14px;font-weight:700;text-decoration:none;transition:all .2s;border:none;cursor:pointer;}
+.btn-vip:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(255,215,0,.25);}
 
-/* ── ACTIVATE VIP ── */
-.activate-wrap{max-width:580px;margin:0 auto;}
-.activate-card{border:1px solid var(--b2);border-radius:8px;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,.6);}
+/* ── ACTIVATION ── */
+.activate-wrap{max-width:540px;margin:0 auto;}
+.activate-card{border:1px solid var(--b2);border-radius:20px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.6);}
 .activate-top{background:var(--s);padding:28px 32px;border-bottom:1px solid var(--b);position:relative;}
 .activate-top::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
-.activate-top-title{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--t);margin-bottom:6px;display:flex;align-items:center;gap:8px;}
-.activate-top-title::before{content:'★';color:var(--gold);}
+.activate-top-title{font-size:15px;font-weight:700;color:var(--t);margin-bottom:6px;display:flex;align-items:center;gap:8px;}
+.activate-top-title span{color:var(--gold);}
 .activate-top-sub{font-size:13px;font-weight:300;color:var(--t2);line-height:1.7;}
 .activate-body{padding:28px 32px;background:var(--bg);}
-.btn-discord{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;padding:14px 24px;background:#5865F2;color:#fff;border:none;border-radius:6px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all .2s;margin-bottom:12px;}
-.btn-discord:hover{background:#4752c4;transform:translateY(-2px);box-shadow:0 8px 28px rgba(88,101,242,.3);}
+.btn-discord{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;padding:14px;background:#5865F2;color:#fff;border:none;border-radius:14px;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;margin-bottom:12px;}
+.btn-discord:hover{background:#4752c4;transform:translateY(-1px);box-shadow:0 8px 24px rgba(88,101,242,.3);}
 .btn-discord:disabled{opacity:.4;cursor:not-allowed;transform:none;}
-#login-msg{font-family:var(--mono);font-size:10px;color:var(--t3);text-align:center;min-height:18px;margin-bottom:4px;}
+#login-msg{font-size:12px;color:var(--t3);text-align:center;min-height:18px;margin-bottom:2px;}
 .key-form{display:none;}
 .key-form.show{display:block;}
-.key-user-row{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--s);border:1px solid var(--b);border-radius:6px;margin-bottom:16px;}
-#key-avatar{width:34px;height:34px;border-radius:50%;border:2px solid #5865F2;object-fit:cover;}
-.key-user-name{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--t);}
-.key-user-tag{font-family:var(--mono);font-size:9px;color:var(--t3);}
-.divider-or{display:flex;align-items:center;gap:10px;margin:14px 0;}
+.key-user-row{display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--s);border:1px solid var(--b);border-radius:12px;margin-bottom:16px;}
+#key-avatar{width:36px;height:36px;border-radius:50%;border:2px solid #5865F2;object-fit:cover;}
+.key-user-name{font-size:14px;font-weight:700;color:var(--t);}
+.key-user-tag{font-size:11px;color:var(--t3);}
+.divider-or{display:flex;align-items:center;gap:10px;margin:16px 0;}
 .divider-or::before,.divider-or::after{content:'';flex:1;height:1px;background:var(--b);}
-.divider-or span{font-family:var(--mono);font-size:9px;color:var(--t3);letter-spacing:2px;}
-.key-input{width:100%;padding:13px 16px;background:var(--s);border:1px solid var(--b2);border-radius:6px;color:var(--t);font-family:var(--mono);font-size:13px;letter-spacing:3px;outline:none;transition:border-color .15s,box-shadow .15s;text-transform:uppercase;margin-bottom:12px;}
-.key-input:focus{border-color:var(--gold);box-shadow:0 0 0 2px rgba(255,215,0,.08);}
-.key-input::placeholder{letter-spacing:1px;font-size:11px;color:var(--t3);}
-#activate-status{font-family:var(--mono);font-size:10px;text-align:center;min-height:20px;margin-top:10px;}
+.divider-or span{font-size:11px;color:var(--t3);letter-spacing:1px;}
+.key-input{width:100%;padding:14px 18px;background:var(--s);border:1px solid var(--b2);border-radius:14px;color:var(--t);font-family:var(--mono);font-size:14px;letter-spacing:3px;outline:none;transition:border-color .15s,box-shadow .15s;text-transform:uppercase;margin-bottom:12px;}
+.key-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(255,215,0,.08);}
+.key-input::placeholder{letter-spacing:1px;font-size:12px;color:var(--t3);}
+#activate-status{font-size:12px;text-align:center;min-height:18px;margin-top:10px;font-weight:500;}
 #activate-status.ok{color:#00e676;}
 #activate-status.err{color:#ff4d4d;}
-.hint-text{font-size:12px;font-weight:300;color:var(--t3);line-height:1.7;text-align:center;margin-top:10px;}
+.hint-text{font-size:12px;font-weight:300;color:var(--t3);line-height:1.7;text-align:center;margin-top:12px;}
 
 /* ── HOW TO ── */
-.howto-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--b);}
-.howto-step{background:var(--bg);padding:40px 34px;}
-.howto-num{font-family:var(--disp);font-size:62px;font-weight:900;color:rgba(214,245,0,.05);line-height:1;margin-bottom:-4px;}
-.howto-title{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--t);margin-bottom:8px;}
-.howto-desc{font-size:13px;font-weight:300;color:var(--t2);line-height:1.8;}
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.step-card{background:var(--s);border:1px solid var(--b);border-radius:20px;padding:32px;position:relative;}
+.step-card::before{content:attr(data-n);position:absolute;top:20px;right:24px;font-size:48px;font-weight:800;color:rgba(214,245,0,.04);line-height:1;}
+.step-num{width:36px;height:36px;border-radius:10px;background:rgba(214,245,0,.08);border:1px solid rgba(214,245,0,.15);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:13px;font-weight:700;color:var(--acc);margin-bottom:16px;}
+.step-title{font-size:16px;font-weight:700;color:var(--t);margin-bottom:8px;}
+.step-desc{font-size:13px;font-weight:300;color:var(--t2);line-height:1.8;}
 
 /* ── DOWNLOAD ── */
-.dl-section{padding:130px 52px;background:linear-gradient(180deg,transparent,rgba(214,245,0,.012) 40%,rgba(214,245,0,.012) 60%,transparent);text-align:center;position:relative;}
-.dl-section::before{content:'ZEKIT';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-weight:900;font-style:italic;font-size:clamp(80px,20vw,260px);color:rgba(214,245,0,.018);letter-spacing:-6px;pointer-events:none;}
+.download-section{padding:100px 48px;text-align:center;position:relative;overflow:hidden;}
+.download-section::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(ellipse,rgba(214,245,0,.05),transparent 70%);pointer-events:none;}
 .dl-inner{position:relative;z-index:1;}
-.dl-tag{font-family:var(--mono);font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--acc);margin-bottom:16px;display:block;}
-.dl-title{font-family:var(--disp);font-weight:900;font-style:italic;font-size:clamp(56px,10vw,130px);line-height:.88;letter-spacing:-2px;color:var(--t);margin-bottom:10px;}
+.dl-title{font-size:clamp(48px,7vw,88px);font-weight:800;letter-spacing:-2px;color:var(--t);line-height:1;margin-bottom:14px;}
 .dl-title em{color:var(--acc);font-style:normal;}
-.dl-subtitle{font-family:var(--mono);font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--t2);margin-bottom:52px;}
-.dl-card{max-width:520px;margin:0 auto;border:1px solid rgba(214,245,0,.1);padding:48px 44px;background:rgba(214,245,0,.003);display:flex;flex-direction:column;align-items:center;gap:22px;}
-.dl-os{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--t2);}
-.dl-specs{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;}
-.dl-spec{font-family:var(--mono);font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--t3);display:flex;align-items:center;gap:5px;}
-.dl-spec::before{content:'';width:3px;height:3px;border-radius:50%;background:var(--acc);display:block;}
-.dl-fine{font-family:var(--mono);font-size:8px;letter-spacing:1.5px;color:var(--t3);text-transform:uppercase;}
+.dl-sub{font-size:15px;font-weight:300;color:var(--t2);margin-bottom:48px;}
+.dl-box{max-width:480px;margin:0 auto;background:var(--s);border:1px solid var(--b);border-radius:24px;padding:40px;display:flex;flex-direction:column;align-items:center;gap:20px;}
+.dl-os{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--t2);}
+.dl-specs{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
+.dl-spec{font-size:11px;font-weight:600;color:var(--t3);display:flex;align-items:center;gap:6px;}
+.dl-spec::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--acc);}
+.dl-fine{font-size:11px;color:var(--t3);}
 
 /* ── FOOTER ── */
-footer{border-top:1px solid var(--b);padding:28px 52px;display:flex;align-items:center;justify-content:space-between;}
-.ft-logo{display:flex;align-items:center;gap:9px;}
-.ft-logo-mark{width:28px;height:28px;background:var(--acc);border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-weight:900;font-size:15px;color:#000;}
-.ft-logo-name{font-family:var(--disp);font-weight:800;font-size:14px;letter-spacing:4px;text-transform:uppercase;color:var(--t3);}
-.ft-links{display:flex;gap:24px;}
-.ft-links a{font-family:var(--mono);font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--t3);text-decoration:none;transition:color .15s;}
+footer{border-top:1px solid var(--b);padding:32px 48px;display:flex;align-items:center;justify-content:space-between;}
+.ft-logo{display:flex;align-items:center;gap:10px;}
+.ft-logo-mark{width:30px;height:30px;background:var(--acc);border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:700;font-size:14px;color:#000;}
+.ft-logo-name{font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--t3);}
+.ft-links{display:flex;gap:28px;}
+.ft-links a{font-size:13px;font-weight:500;color:var(--t3);text-decoration:none;transition:color .15s;}
 .ft-links a:hover{color:var(--t2);}
-.ft-r{text-align:right;}
-.ft-author{font-family:var(--mono);font-size:9px;color:rgba(255,215,0,.3);letter-spacing:1px;}
-.ft-copy{font-family:var(--mono);font-size:8px;color:var(--t3);margin-top:2px;letter-spacing:1px;}
+.ft-right{text-align:right;}
+.ft-author{font-size:11px;font-weight:600;color:rgba(255,215,0,.3);}
+.ft-copy{font-size:11px;color:var(--t3);margin-top:2px;}
 
 /* ── UTILS ── */
-.sr{opacity:0;transform:translateY(18px);transition:opacity .5s ease,transform .5s ease;}
+.sr{opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease;}
 .sr.in{opacity:1;transform:translateY(0);}
-@keyframes up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-@keyframes left{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
 
 @media(max-width:960px){
   nav,footer{padding-left:20px;padding-right:20px;}
-  .nav-center{display:none;}
-  .hero,.wrap,.vip-wrap,.dl-section{padding-left:22px;padding-right:22px;}
-  .hero{grid-template-columns:1fr;padding-top:90px;gap:40px;}
-  .hero-right{display:none;}
-  .stats{grid-template-columns:1fr 1fr;}
-  .stat:nth-child(2){border-right:none;}
-  .tools-grid{grid-template-columns:repeat(3,1fr);}
-  .tool:nth-child(7n){border-right:1px solid var(--b);}
-  .tool:nth-child(3n){border-right:none;}
-  .feats-grid,.howto-grid{grid-template-columns:1fr;gap:2px;}
-  .d-row{grid-template-columns:1fr;}
-  .d-chips{grid-template-columns:repeat(2,1fr);}
+  .nav-links{display:none;}
+  .hero,.section,.vip-section,.download-section{padding-left:20px;padding-right:20px;}
+  .tools-grid{grid-template-columns:repeat(2,1fr);}
+  .feats-grid,.steps-grid{grid-template-columns:1fr;}
   .vip-feats{grid-template-columns:1fr;}
-  footer{flex-direction:column;gap:12px;text-align:center;}
-  .ft-r,.ft-links{display:none;}
+  .stats-section{grid-template-columns:repeat(2,1fr);padding:48px 20px;}
+  .stat-item:nth-child(2){border-right:none;}
+  footer{flex-direction:column;gap:14px;text-align:center;}
 }
 </style>
 </head>
 <body>
 
 <!-- NAV -->
-<nav>
+<nav id="main-nav">
   <a href="/" class="nav-logo">
     <div class="nav-logo-mark">Z.</div>
     <span class="nav-logo-name">Zekit</span>
   </a>
-  <ul class="nav-center">
+  <ul class="nav-links">
     <li><a href="#outils">Outils</a></li>
     <li><a href="#vip">VIP</a></li>
-    <li><a href="#demo">Demo</a></li>
     <li><a href="#activate">Activer VIP</a></li>
     <li><a href="#telecharger">Telecharger</a></li>
   </ul>
@@ -299,354 +249,174 @@ footer{border-top:1px solid var(--b);padding:28px 52px;display:flex;align-items:
     <div id="nav-user">
       <img id="nav-avatar" src="" alt="">
       <span id="nav-uname"></span>
-      <button class="btn-nav-logout" onclick="logout()">Deconnexion</button>
+      <button class="btn-logout" onclick="logout()">Deconnexion</button>
     </div>
-    <div class="nav-badge" id="nav-badge-win">Windows</div>
+    <a href="#telecharger" class="btn-nav">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Telecharger
+    </a>
   </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-left">
-    <div class="hero-eyebrow"><div class="hero-eyebrow-dot"></div>v1.0 &mdash; 14 Outils &mdash; Discord</div>
-    <h1 class="hero-t">ZE<em>KIT</em></h1>
-    <p class="hero-sub"><strong>14 outils professionnels</strong> dans une seule application Windows. Connexion <strong>Discord</strong> requise. Les membres <span class="gold">VIP</span> accdent aux fonctionnalites IA.</p>
-    <div class="hero-cta">
-      <a href="https://github.com/Vacteici/Zekit/releases/download/v1/install.zekit.exe" class="btn-dl" download>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Telecharger ZEKIT
-      </a>
-      <div class="cta-meta"><span>Windows 10 / 11</span><span>Discord requis</span><span>Gratuit</span></div>
-    </div>
+  <div class="hero-pill"><div class="hero-pill-dot"></div>v1.0 disponible — Windows 10 / 11</div>
+  <h1 class="hero-title">14 outils.<br><em>Une seule app.</em></h1>
+  <p class="hero-sub"><strong>ZEKIT</strong> regroupe 14 outils professionnels dans une application Windows legere et rapide. Connexion <strong>Discord</strong> requise. Les membres <span class="gold">VIP</span> accdent aux fonctionnalites IA.</p>
+  <div class="hero-cta">
+    <a href="download/install.zekit.exe" class="btn-hero-primary" download>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Telecharger gratuitement
+    </a>
+    <a href="#outils" class="btn-hero-secondary">
+      Explorer les outils
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
   </div>
-  <div class="hero-right">
-    <div class="app-mock">
-      <div class="app-bar">
-        <div class="app-dot" style="background:#ff5f56"></div>
-        <div class="app-dot" style="background:#ffbd2e"></div>
-        <div class="app-dot" style="background:#27c93f"></div>
-        <span class="app-label">ZEKIT v1</span>
-        <span class="app-badge">LIVE</span>
+  <div class="hero-meta"><span>Windows 10 / 11</span><span>Discord requis</span><span>Gratuit</span><span>Cree par Vacteici</span></div>
+</section>
+
+<!-- APP PREVIEW SLIDER -->
+<div class="preview-section">
+  <div class="preview-track" id="track">
+    <!-- Markdown -->
+    <div class="preview-card">
+      <div class="preview-card-bar"><div class="preview-dot" style="background:#ff5f56"></div><div class="preview-dot" style="background:#ffbd2e"></div><div class="preview-dot" style="background:#27c93f"></div><span class="preview-tab">ZEKIT — Markdown</span></div>
+      <div class="preview-body">
+        <div class="preview-tag">Editeur Markdown</div>
+        <div class="preview-h"># Bienvenue</div>
+        <div class="preview-content">Texte avec du <strong style="color:#fff">gras</strong> et de l'<em style="color:#b48eff">italique</em>.<br>Apercu en temps reel.</div>
       </div>
-      <div class="app-tabs">
-        <div class="app-tab ac">MD Markdown</div>
-        <div class="app-tab dc">Webhook</div>
-        <div class="app-tab vp">★ IA Humaniser</div>
-        <div class="app-tab">QR Code</div>
-        <div class="app-tab">Pseudo</div>
+    </div>
+    <!-- Password -->
+    <div class="preview-card">
+      <div class="preview-card-bar"><div class="preview-dot" style="background:#ff5f56"></div><div class="preview-dot" style="background:#ffbd2e"></div><div class="preview-dot" style="background:#27c93f"></div><span class="preview-tab">ZEKIT — Mot de passe</span></div>
+      <div class="preview-body">
+        <div class="preview-tag">Generateur securise</div>
+        <div class="preview-pass">Tr0ub4d0r&amp;3xP@ss!</div>
+        <div class="preview-strength"></div>
+        <div class="preview-row"><span class="preview-chip">Majuscules</span><span class="preview-chip">Chiffres</span><span class="preview-chip">Symbols</span></div>
       </div>
-      <div class="app-body">
-        <div class="app-2col">
-          <div>
-            <div class="app-col-lbl">Editeur</div>
-            <div class="app-editor">
-              <span style="color:var(--acc)"># </span>Bienvenue dans ZEKIT<br><br>
-              Texte avec du <span style="color:var(--acc)">**gras**</span><br>
-              et de l'<span style="color:#b48eff">*italique*</span>.<br><br>
-              <span style="color:#57a0ff">## </span>Liste<br>
-              - Element 1<br>- Element 2<br><br>
-              <span style="color:var(--t3)">| Outil | Type |</span><br>
-              <span style="color:var(--t3)">| --- | --- |</span><br>
-              <span style="color:var(--t3)">| Markdown | Editeur |</span>
-            </div>
-          </div>
-          <div>
-            <div class="app-col-lbl">Apercu rendu</div>
-            <div class="app-preview">
-              <div class="app-h1">Bienvenue dans ZEKIT</div>
-              <div class="app-p">Texte avec du <strong style="color:#fff">gras</strong> et de l'<em style="color:#b48eff">italique</em>.</div>
-              <div class="app-p" style="color:#57a0ff;font-weight:700;font-size:13px">Liste</div>
-              <div class="app-p">· Element 1<br>· Element 2</div>
-              <table class="app-table"><tr><th>Outil</th><th>Type</th></tr><tr><td>Markdown</td><td>Editeur</td></tr></table>
-            </div>
-          </div>
+    </div>
+    <!-- Coffre -->
+    <div class="preview-card">
+      <div class="preview-card-bar"><div class="preview-dot" style="background:#ff5f56"></div><div class="preview-dot" style="background:#ffbd2e"></div><div class="preview-dot" style="background:#27c93f"></div><span class="preview-tab">ZEKIT — Coffre</span></div>
+      <div class="preview-body">
+        <div class="preview-tag">Notes chiffrees .zekit</div>
+        <div style="display:flex;flex-direction:column;gap:5px;margin-top:8px">
+          <div style="background:var(--b2);border-radius:6px;padding:7px 10px;display:flex;align-items:center;gap:8px;font-size:11px"><span style="flex:1;color:var(--t)">Discord</span><span style="font-family:var(--mono);font-size:9px;background:#0c0c0c;padding:2px 6px;border-radius:3px;color:var(--t2)">COMPTE</span><span style="color:var(--t3);font-family:var(--mono);font-size:11px">••••••</span></div>
+          <div style="background:var(--b2);border-radius:6px;padding:7px 10px;display:flex;align-items:center;gap:8px;font-size:11px"><span style="flex:1;color:var(--t)">GitHub API</span><span style="font-family:var(--mono);font-size:9px;background:#0c0c0c;padding:2px 6px;border-radius:3px;color:var(--t2)">CLE</span><span style="color:var(--t3);font-family:var(--mono);font-size:11px">••••••</span></div>
         </div>
       </div>
     </div>
+    <!-- QR Code -->
+    <div class="preview-card">
+      <div class="preview-card-bar"><div class="preview-dot" style="background:#ff5f56"></div><div class="preview-dot" style="background:#ffbd2e"></div><div class="preview-dot" style="background:#27c93f"></div><span class="preview-tab">ZEKIT — QR Code</span></div>
+      <div class="preview-body">
+        <div class="preview-tag">3 styles de QR</div>
+        <div style="display:flex;align-items:center;gap:12px;margin-top:8px"><div class="preview-qr"></div><div style="font-size:11px;color:var(--t2);line-height:1.7">Couleurs custom<br>Logo central<br>Export PNG</div></div>
+      </div>
+    </div>
+    <!-- Couleurs -->
+    <div class="preview-card">
+      <div class="preview-card-bar"><div class="preview-dot" style="background:#ff5f56"></div><div class="preview-dot" style="background:#ffbd2e"></div><div class="preview-dot" style="background:#27c93f"></div><span class="preview-tab">ZEKIT — Couleurs</span></div>
+      <div class="preview-body">
+        <div class="preview-tag">HEX / RGB / HSL</div>
+        <div class="preview-color" style="background:#d6f500"></div>
+        <div class="preview-colors-row"><div class="preview-color-sm" style="background:#1a1a00"></div><div class="preview-color-sm" style="background:#4d5c00"></div><div class="preview-color-sm" style="background:#8ca300"></div><div class="preview-color-sm" style="background:#d6f500"></div><div class="preview-color-sm" style="background:#e8ff66"></div></div>
+      </div>
+    </div>
+    <!-- IA Humaniser VIP -->
+    <div class="preview-card" style="border-color:rgba(255,215,0,.2)">
+      <div class="preview-card-bar" style="background:rgba(255,215,0,.05);border-bottom:1px solid rgba(255,215,0,.1)"><div class="preview-dot" style="background:#ff5f56"></div><div class="preview-dot" style="background:#ffbd2e"></div><div class="preview-dot" style="background:#27c93f"></div><span class="preview-tab" style="color:var(--gold)">ZEKIT — IA VIP</span></div>
+      <div class="preview-body">
+        <div class="preview-tag" style="color:var(--gold)">★ IA Humaniser</div>
+        <div class="preview-score">
+          <div class="preview-ring-wrap">
+            <svg width="64" height="64" viewBox="0 0 64 64"><circle fill="none" stroke="var(--b2)" stroke-width="6" cx="32" cy="32" r="25"/><circle fill="none" stroke="#FFD700" stroke-width="6" stroke-linecap="round" cx="32" cy="32" r="25" stroke-dasharray="157" stroke-dashoffset="94"/></svg>
+            <div class="preview-ring-label"><div class="preview-ring-pct">40%</div><div class="preview-ring-sub">MIXTE</div></div>
+          </div>
+          <div style="font-size:11px;color:var(--t2);line-height:1.7">Score de detection<br>IA vs Humain<br><span style="color:var(--gold)">claude-haiku-4-5</span></div>
+        </div>
+      </div>
+    </div>
+    <!-- Pseudo -->
+    <div class="preview-card">
+      <div class="preview-card-bar"><div class="preview-dot" style="background:#ff5f56"></div><div class="preview-dot" style="background:#ffbd2e"></div><div class="preview-dot" style="background:#27c93f"></div><span class="preview-tab">ZEKIT — Pseudo</span></div>
+      <div class="preview-body">
+        <div class="preview-tag">14 styles</div>
+        <div class="preview-row" style="flex-wrap:wrap"><span class="preview-chip">KageRyu</span><span class="preview-chip">OniArashi</span><span class="preview-chip">YamiX</span><span class="preview-chip">TsukiRyu</span></div>
+      </div>
+    </div>
+    <!-- Duplicate for infinite scroll -->
+    <div class="preview-card"><div class="preview-card-bar"><div class="preview-dot" style="background:#ff5f56"></div><div class="preview-dot" style="background:#ffbd2e"></div><div class="preview-dot" style="background:#27c93f"></div><span class="preview-tab">ZEKIT — JSON</span></div><div class="preview-body"><div class="preview-tag">Format / Minify</div><div style="font-family:var(--mono);font-size:10px;color:#b48eff;line-height:1.7;margin-top:6px">{"name":<span style="color:#57F287">"ZEKIT"</span>,<br>"version":<span style="color:var(--acc)">1</span>,<br>"tools":<span style="color:var(--acc)">14</span>}</div></div></div>
+    <div class="preview-card"><div class="preview-card-bar"><div class="preview-dot" style="background:#ff5f56"></div><div class="preview-dot" style="background:#ffbd2e"></div><div class="preview-dot" style="background:#27c93f"></div><span class="preview-tab">ZEKIT — Encodage</span></div><div class="preview-body"><div class="preview-tag">Base64 / Hex / Morse</div><div class="preview-pass" style="font-size:11px;letter-spacing:1px">Qm9uam91ciBaRUtJVA==</div></div></div>
   </div>
-</section>
+</div>
 
 <!-- STATS -->
-<div class="stats">
-  <div class="stat sr"><span class="stat-n">14</span><span class="stat-l">Outils integres</span></div>
-  <div class="stat sr"><span class="stat-n">0</span><span class="stat-l">Abonnement</span></div>
-  <div class="stat sr"><span class="stat-n">V1</span><span class="stat-l">Version stable</span></div>
-  <div class="stat sr"><span class="stat-n">DC</span><span class="stat-l">Connexion requise</span></div>
+<div class="stats-section">
+  <div class="stat-item sr"><span class="stat-num">14</span><span class="stat-lbl">Outils integres</span></div>
+  <div class="stat-item sr"><span class="stat-num">0€</span><span class="stat-lbl">Abonnement</span></div>
+  <div class="stat-item sr"><span class="stat-num">V1</span><span class="stat-lbl">Version stable</span></div>
+  <div class="stat-item sr"><span class="stat-num">AI</span><span class="stat-lbl">IA integree (VIP)</span></div>
 </div>
 
 <!-- OUTILS -->
-<section class="wrap" id="outils">
-  <div class="sr"><div class="sec-eyebrow">Fonctionnalites</div><h2 class="sec-title">Les<br><em>outils</em></h2></div>
-  <div class="tools-grid">
-    <div class="tool sr" style="--tc:#d500f9"><div class="tool-num">01</div><div class="tool-ico" style="border-color:#d500f9;color:#d500f9">MD</div><div class="tool-name">Markdown</div><div class="tool-desc">Editeur live avec apercu, barre d outils et export .md</div></div>
-    <div class="tool sr" style="--tc:#00e5ff"><div class="tool-num">02</div><div class="tool-ico" style="border-color:#00e5ff;color:#00e5ff">IMG</div><div class="tool-name">Images</div><div class="tool-desc">Compression JPG/PNG/WebP avec controle qualite</div></div>
-    <div class="tool sr" style="--tc:#ff3d3d"><div class="tool-num">03</div><div class="tool-ico" style="border-color:#ff3d3d;color:#ff3d3d">QR</div><div class="tool-name">QR Code</div><div class="tool-desc">3 styles, couleurs custom, logo central</div></div>
-    <div class="tool sr"><div class="tool-num">04</div><div class="tool-ico">TXT</div><div class="tool-name">Texte</div><div class="tool-desc">Slug, majuscules, tri de lignes, compteur</div></div>
-    <div class="tool sr" style="--tc:#b48eff"><div class="tool-num">05</div><div class="tool-ico" style="border-color:#b48eff;color:#b48eff">{ }</div><div class="tool-name">JSON</div><div class="tool-desc">Format, minify, tri des cles, validation live</div></div>
-    <div class="tool sr" style="--tc:#ffd600"><div class="tool-num">06</div><div class="tool-ico" style="border-color:#ffd600;color:#ffd600">COL</div><div class="tool-name">Couleurs</div><div class="tool-desc">HEX / RGB / HSL + generateur de palettes</div></div>
-    <div class="tool sr" style="--tc:#00e676"><div class="tool-num">07</div><div class="tool-ico" style="border-color:#00e676;color:#00e676">MDP</div><div class="tool-name">Mot de passe</div><div class="tool-desc">Generateur crypto + analyseur de force</div></div>
-    <div class="tool sr"><div class="tool-num">08</div><div class="tool-ico">TMR</div><div class="tool-name">Minuteur</div><div class="tool-desc">Compte a rebours et chronometre</div></div>
-    <div class="tool sr" style="--tc:#ff9500"><div class="tool-num">09</div><div class="tool-ico" style="border-color:#ff9500;color:#ff9500">ENC</div><div class="tool-name">Encodage</div><div class="tool-desc">Base64, URL, Hex, Binaire, Morse</div></div>
-    <div class="tool sr"><div class="tool-num">10</div><div class="tool-ico">CAL</div><div class="tool-name">Calcul</div><div class="tool-desc">Calculatrice avancee + convertisseur d unites</div></div>
-    <div class="tool sr" style="--tc:#ff9500"><div class="tool-new">NEW</div><div class="tool-num">11</div><div class="tool-ico" style="border-color:#ff9500;color:#ff9500">COF</div><div class="tool-name">Coffre</div><div class="tool-desc">Notes et identifiants prives en .zekit chiffre</div></div>
-    <div class="tool sr" style="--tc:#ff4dd2"><div class="tool-new">NEW</div><div class="tool-num">12</div><div class="tool-ico" style="border-color:#ff4dd2;color:#ff4dd2">PSE</div><div class="tool-name">Pseudo</div><div class="tool-desc">14 styles de generation pour gaming et Discord</div></div>
-    <div class="tool sr" style="--tc:#5865F2"><div class="tool-new">NEW</div><div class="tool-num">13</div><div class="tool-ico" style="border-color:#5865F2;color:#5865F2">WHK</div><div class="tool-name">Webhook</div><div class="tool-desc">Constructeur d embeds Discord avec apercu live</div></div>
-    <div class="tool sr" style="--tc:var(--gold)"><div class="tool-vip">VIP</div><div class="tool-num">+IA</div><div class="tool-ico" style="border-color:var(--gold);color:var(--gold)">HUM</div><div class="tool-name">IA Humaniser</div><div class="tool-desc">Detecter et humaniser les textes generes par IA</div></div>
+<section class="section" id="outils">
+  <div class="sr"><div class="sec-pill">Fonctionnalites</div><h2 class="sec-title">Tous les <em>outils</em></h2><p class="sec-sub">14 outils soigneusement selectionnes pour le quotidien d'un developpeur ou createur de contenu Discord.</p></div>
+  <div class="tools-grid sr">
+    <div class="tool-card" style="--tc:#d500f9"><div class="tool-card-num">01</div><div class="tool-card-ico" style="background:rgba(213,0,249,.08);border:1px solid rgba(213,0,249,.2);color:#d500f9">MD</div><div class="tool-card-name">Markdown</div><div class="tool-card-desc">Editeur live avec apercu, barre d outils et export .md</div></div>
+    <div class="tool-card"><div class="tool-card-num">02</div><div class="tool-card-ico" style="background:rgba(0,229,255,.08);border:1px solid rgba(0,229,255,.2);color:#00e5ff">IMG</div><div class="tool-card-name">Images</div><div class="tool-card-desc">Compression JPG/PNG/WebP avec controle qualite</div></div>
+    <div class="tool-card"><div class="tool-card-num">03</div><div class="tool-card-ico" style="background:rgba(255,61,61,.08);border:1px solid rgba(255,61,61,.2);color:#ff3d3d">QR</div><div class="tool-card-name">QR Code</div><div class="tool-card-desc">3 styles, couleurs custom, logo central, export PNG</div></div>
+    <div class="tool-card"><div class="tool-card-num">04</div><div class="tool-card-ico" style="background:rgba(214,245,0,.08);border:1px solid rgba(214,245,0,.2);color:var(--acc)">TXT</div><div class="tool-card-name">Texte</div><div class="tool-card-desc">Slug, majuscules, tri de lignes, compteur</div></div>
+    <div class="tool-card"><div class="tool-card-num">05</div><div class="tool-card-ico" style="background:rgba(180,142,255,.08);border:1px solid rgba(180,142,255,.2);color:#b48eff">{ }</div><div class="tool-card-name">JSON</div><div class="tool-card-desc">Format, minify, tri des cles, validation live</div></div>
+    <div class="tool-card"><div class="tool-card-num">06</div><div class="tool-card-ico" style="background:rgba(255,214,0,.08);border:1px solid rgba(255,214,0,.2);color:#ffd600">COL</div><div class="tool-card-name">Couleurs</div><div class="tool-card-desc">HEX / RGB / HSL et generateur de palettes</div></div>
+    <div class="tool-card"><div class="tool-card-num">07</div><div class="tool-card-ico" style="background:rgba(0,230,118,.08);border:1px solid rgba(0,230,118,.2);color:#00e676">MDP</div><div class="tool-card-name">Mot de passe</div><div class="tool-card-desc">Generateur crypto et analyseur de force</div></div>
+    <div class="tool-card"><div class="tool-card-num">08</div><div class="tool-card-ico" style="background:rgba(214,245,0,.06);border:1px solid var(--b2);color:var(--t2)">TMR</div><div class="tool-card-name">Minuteur</div><div class="tool-card-desc">Compte a rebours et chronometre</div></div>
+    <div class="tool-card"><div class="tool-card-num">09</div><div class="tool-card-ico" style="background:rgba(255,149,0,.08);border:1px solid rgba(255,149,0,.2);color:#ff9500">ENC</div><div class="tool-card-name">Encodage</div><div class="tool-card-desc">Base64, URL, Hex, Binaire, Morse</div></div>
+    <div class="tool-card"><div class="tool-card-num">10</div><div class="tool-card-ico" style="background:rgba(214,245,0,.06);border:1px solid var(--b2);color:var(--t2)">CAL</div><div class="tool-card-name">Calcul</div><div class="tool-card-desc">Calculatrice avancee et convertisseur d unites</div></div>
+    <div class="tool-card"><div class="tool-card-num">11</div><div class="tool-card-ico" style="background:rgba(255,149,0,.08);border:1px solid rgba(255,149,0,.2);color:#ff9500">COF</div><div class="tool-card-name">Coffre</div><div class="tool-card-desc">Notes et identifiants prives en .zekit chiffre</div><div class="tool-badge badge-new">NEW</div></div>
+    <div class="tool-card"><div class="tool-card-num">12</div><div class="tool-card-ico" style="background:rgba(255,77,210,.08);border:1px solid rgba(255,77,210,.2);color:#ff4dd2">PSE</div><div class="tool-card-name">Pseudo</div><div class="tool-card-desc">14 styles de generation pour gaming et Discord</div><div class="tool-badge badge-new">NEW</div></div>
+    <div class="tool-card"><div class="tool-card-num">13</div><div class="tool-card-ico" style="background:rgba(88,101,242,.08);border:1px solid rgba(88,101,242,.2);color:#5865F2">WHK</div><div class="tool-card-name">Webhook</div><div class="tool-card-desc">Constructeur d embeds Discord avec apercu live</div><div class="tool-badge badge-new">NEW</div></div>
+    <div class="tool-card" style="border-color:rgba(255,215,0,.15)"><div class="tool-card-num">+IA</div><div class="tool-card-ico" style="background:rgba(255,215,0,.1);border:1px solid rgba(255,215,0,.25);color:var(--gold)">HUM</div><div class="tool-card-name" style="color:var(--gold)">IA Humaniser</div><div class="tool-card-desc">Detecter et humaniser les textes generes par IA</div><div class="tool-badge badge-vip">VIP</div></div>
   </div>
 </section>
 
 <!-- FEATURES -->
-<section class="wrap" style="padding-top:0">
-  <div class="sec-eyebrow sr">Pourquoi ZEKIT</div>
-  <h2 class="sec-title sr">Simple.<br>Rapide.<br>Gratuit.</h2>
-  <div class="feats-grid">
-    <div class="feat sr"><div class="feat-line"></div><div class="feat-num">01</div><div class="feat-title">Tout en un</div><div class="feat-desc">14 outils dans une seule interface. Plus de dizaines d onglets. Tout est la, organise, accessible en un clic depuis la barre de navigation.</div></div>
-    <div class="feat sr"><div class="feat-line"></div><div class="feat-num">02</div><div class="feat-title">Instantane</div><div class="feat-desc">Demarre en moins d une seconde. Aucun chargement, aucun serveur. Tout tourne localement sur ton PC pour une reactivite maximale.</div></div>
-    <div class="feat sr"><div class="feat-line"></div><div class="feat-num">03</div><div class="feat-title">Gratuit</div><div class="feat-desc">Aucun abonnement, aucune limite cachee. Un compte Discord est requis pour la connexion. Les fonctionnalites IA sont reservees aux membres VIP.</div></div>
+<section class="section" style="padding-top:0">
+  <div class="sr"><div class="sec-pill">Avantages</div><h2 class="sec-title">Simple.<br>Rapide. <em>Gratuit.</em></h2></div>
+  <div class="feats-grid sr">
+    <div class="feat-card" data-num="01"><div class="feat-card-icon">🧰</div><div class="feat-card-title">Tout en un</div><div class="feat-card-desc">14 outils dans une seule interface. Plus besoin de jongler entre dizaines de sites. Tout est la, accessible en un clic depuis la barre de navigation.</div></div>
+    <div class="feat-card" data-num="02"><div class="feat-card-icon">⚡</div><div class="feat-card-title">Instantane</div><div class="feat-card-desc">Demarre en moins d une seconde. Aucun chargement, aucun serveur. Tout tourne localement sur ton PC pour une reactivite maximale.</div></div>
+    <div class="feat-card" data-num="03"><div class="feat-card-icon">🎁</div><div class="feat-card-title">Gratuit</div><div class="feat-card-desc">Aucun abonnement, aucune limite cachee. Connexion Discord requise. Les fonctionnalites IA sont reservees aux membres VIP avec clef d activation.</div></div>
   </div>
 </section>
 
 <!-- VIP -->
-<section class="vip-wrap" id="vip">
+<section class="vip-section" id="vip">
   <div class="vip-card sr">
-    <div class="vip-badge">★ VIP — Acces exclusif</div>
+    <div class="vip-pill">★ VIP — Acces exclusif</div>
     <h2 class="vip-title">Fonctionnalites<br>IA exclusives</h2>
-    <p class="vip-desc">Les membres VIP ont acces a des fonctionnalites propulsees par <strong style="color:var(--t)">Claude Haiku</strong> directement integrees dans ZEKIT. Active ton VIP avec une clef fournie par le createur sur le serveur Discord.</p>
+    <p class="vip-desc">Les membres VIP ont acces a des fonctionnalites propulsees par <strong style="color:var(--t)">Claude Haiku</strong> directement integrees dans ZEKIT. Active ton VIP avec une clef d activation fournie par le createur.</p>
     <div class="vip-feats">
-      <div class="vip-feat"><div class="vip-feat-star">★</div><div><div class="vip-feat-title">IA Markdown</div><div class="vip-feat-desc">Demande a l IA de creer ou ameliorer ton contenu Markdown</div></div></div>
-      <div class="vip-feat"><div class="vip-feat-star">★</div><div><div class="vip-feat-title">IA Pseudo</div><div class="vip-feat-desc">Genere des pseudos personnalises avec l intelligence artificielle</div></div></div>
-      <div class="vip-feat"><div class="vip-feat-star">★</div><div><div class="vip-feat-title">IA Format Discord</div><div class="vip-feat-desc">Formate tes messages Discord parfaitement avec l IA</div></div></div>
-      <div class="vip-feat"><div class="vip-feat-star">★</div><div><div class="vip-feat-title">IA Humaniser</div><div class="vip-feat-desc">Detecte les textes IA et les humanise avec un score de fiabilite</div></div></div>
+      <div class="vip-feat"><div class="vip-feat-star">★</div><div><div class="vip-feat-title">IA Markdown</div><div class="vip-feat-desc">Demande a l IA de creer ou ameliorer ton contenu</div></div></div>
+      <div class="vip-feat"><div class="vip-feat-star">★</div><div><div class="vip-feat-title">IA Pseudo</div><div class="vip-feat-desc">Genere des pseudos personnalises via IA</div></div></div>
+      <div class="vip-feat"><div class="vip-feat-star">★</div><div><div class="vip-feat-title">IA Format Discord</div><div class="vip-feat-desc">Formate tes messages Discord avec l IA</div></div></div>
+      <div class="vip-feat"><div class="vip-feat-star">★</div><div><div class="vip-feat-title">IA Humaniser</div><div class="vip-feat-desc">Detecte et humanise les textes IA avec score</div></div></div>
     </div>
-    <a href="#activate" class="btn-vip">★ Activer mon VIP</a>
+    <button class="btn-vip" onclick="document.getElementById('activate').scrollIntoView({behavior:'smooth'})">★ Activer mon VIP</button>
   </div>
 </section>
 
-<!-- DEMO -->
-<section class="wrap" id="demo">
-  <div class="sr"><div class="sec-eyebrow">Apercu</div><h2 class="sec-title">Demo<br><em>interactive</em></h2></div>
-  <p class="sr" style="font-size:13px;color:var(--t2);margin-bottom:32px;font-weight:300">Explore les outils sans installer quoi que ce soit. Clique sur un onglet.</p>
-  <div class="demo-wrap sr">
-    <div class="demo-bar">
-      <div class="demo-dot" style="background:#ff5f56"></div>
-      <div class="demo-dot" style="background:#ffbd2e"></div>
-      <div class="demo-dot" style="background:#27c93f"></div>
-      <span class="demo-lbl">ZEKIT v1 — Demo</span>
-      <span class="demo-tag">INTERACTIF</span>
-    </div>
-    <div class="demo-tabs" id="demo-tabs">
-      <button class="d-tab active" data-d="md">Markdown</button>
-      <button class="d-tab" data-d="pass">Mot de passe</button>
-      <button class="d-tab" data-d="json">JSON</button>
-      <button class="d-tab" data-d="qr">QR Code</button>
-      <button class="d-tab" data-d="color">Couleurs</button>
-      <button class="d-tab" data-d="enc">Encodage</button>
-      <button class="d-tab" data-d="pseudo">Pseudo</button>
-      <button class="d-tab" data-d="coffre">Coffre</button>
-      <button class="d-tab vip-tab" data-d="humanize">★ IA Humaniser</button>
-    </div>
-    <div class="demo-body">
-
-      <!-- Markdown -->
-      <div class="d-panel active" id="dp-md">
-        <div class="d-row">
-          <div>
-            <div class="d-lbl">Editeur</div>
-            <div class="d-fake-textarea" style="height:170px">
-              <span style="color:var(--acc)"># </span>Titre principal<br><br>
-              Paragraphe avec du <span style="color:#efefef">**gras**</span> et de l'<span style="color:#b48eff">*italique*</span>.<br><br>
-              <span style="color:#57a0ff">## </span>Liste<br>
-              - Element 1<br>- Element 2<br>- Element 3
-            </div>
-            <div style="margin-top:10px"><div class="d-btn d-btn-acc">Copier MD</div><div class="d-btn d-btn-sec">Export .md</div></div>
-          </div>
-          <div>
-            <div class="d-lbl">Apercu rendu</div>
-            <div style="background:#0a0a0a;border:1px solid var(--b);border-radius:4px;padding:14px;height:170px;overflow:hidden">
-              <div style="font-family:var(--disp);font-size:20px;font-weight:800;color:var(--acc);border-bottom:1px solid var(--b);padding-bottom:6px;margin-bottom:8px">Titre principal</div>
-              <div style="font-size:11px;color:#aaa;line-height:1.7;margin-bottom:7px">Paragraphe avec du <strong style="color:#fff">gras</strong> et de l'<em style="color:#b48eff">italique</em>.</div>
-              <div style="font-size:12px;font-weight:700;color:#57a0ff;margin-bottom:4px">Liste</div>
-              <div style="font-size:11px;color:#aaa;line-height:1.9">· Element 1<br>· Element 2<br>· Element 3</div>
-            </div>
-          </div>
-        </div>
-        <div class="d-notice">Modifications en temps reel dans l application</div>
-      </div>
-
-      <!-- Password -->
-      <div class="d-panel" id="dp-pass">
-        <div style="max-width:480px">
-          <div class="d-lbl">Mot de passe genere</div>
-          <div class="d-output" style="font-size:15px;letter-spacing:2px">Tr0ub4d0r&amp;3xP@ssw0rd!</div>
-          <div style="height:3px;border-radius:2px;background:linear-gradient(90deg,#00e5ff 80%,var(--b) 80%);margin:8px 0 5px"></div>
-          <div style="font-family:var(--mono);font-size:9px;color:#00e5ff;margin-bottom:12px">Force : Excellent</div>
-          <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:14px">
-            <span class="d-badge d-ok">Majuscules</span><span class="d-badge d-ok">Minuscules</span>
-            <span class="d-badge d-ok">Chiffres</span><span class="d-badge d-ok">Symboles</span><span class="d-badge d-ok">20+ chars</span>
-          </div>
-          <div class="d-btn d-btn-acc" style="margin-right:8px">Regenerer</div>
-          <div class="d-btn d-btn-sec">Copier</div>
-        </div>
-        <div class="d-notice">Longueur et regles personnalisables</div>
-      </div>
-
-      <!-- JSON -->
-      <div class="d-panel" id="dp-json">
-        <div class="d-row">
-          <div>
-            <div class="d-lbl">Entree</div>
-            <div class="d-fake-textarea" style="height:130px;color:#b48eff">{"name":"Zekit","version":1,<br>"tools":["md","qr","coffre"],<br>"vip":true}</div>
-            <div style="display:flex;gap:6px;margin-top:10px"><div class="d-btn d-btn-acc">Formater</div><div class="d-btn d-btn-sec">Minifier</div></div>
-          </div>
-          <div>
-            <div class="d-lbl">Resultat</div>
-            <div class="d-fake-textarea" style="height:130px;color:#b48eff">{<br>&nbsp;&nbsp;"name": "Zekit",<br>&nbsp;&nbsp;"version": 1,<br>&nbsp;&nbsp;"tools": [...]<br>}</div>
-            <span class="d-badge d-ok" style="display:inline-block;margin-top:8px">JSON valide</span>
-          </div>
-        </div>
-        <div class="d-notice">Validation live et tri des cles</div>
-      </div>
-
-      <!-- QR -->
-      <div class="d-panel" id="dp-qr">
-        <div class="d-row">
-          <div>
-            <div class="d-lbl">Contenu</div>
-            <div class="d-fake-input">https://zekit.fr</div>
-            <div class="d-lbl" style="margin-top:12px">Style</div>
-            <div style="display:flex;gap:6px"><div class="d-btn d-btn-acc">Carre</div><div class="d-btn d-btn-sec">Arrondi</div><div class="d-btn d-btn-sec">Cercle</div></div>
-            <div class="d-btn d-btn-acc" style="margin-top:12px">Generer</div>
-          </div>
-          <div style="display:flex;flex-direction:column;align-items:center;gap:12px;padding-top:16px">
-            <div class="d-qr"></div>
-            <div class="d-btn d-btn-sec">Telecharger PNG</div>
-          </div>
-        </div>
-        <div class="d-notice">Couleurs et logo central personnalisables</div>
-      </div>
-
-      <!-- Couleurs -->
-      <div class="d-panel" id="dp-color">
-        <div class="d-row">
-          <div>
-            <div class="d-lbl">Couleur</div>
-            <div style="height:52px;background:#d6f500;border-radius:4px;margin-bottom:10px"></div>
-            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px">
-              <div style="background:#0c0c0c;border:1px solid var(--b);border-radius:4px;padding:8px;text-align:center"><div style="font-family:var(--mono);font-size:10px;color:var(--acc)">#D6F500</div><div style="font-family:var(--mono);font-size:8px;color:var(--t3);margin-top:2px">HEX</div></div>
-              <div style="background:#0c0c0c;border:1px solid var(--b);border-radius:4px;padding:8px;text-align:center"><div style="font-family:var(--mono);font-size:10px;color:var(--acc)">214,245,0</div><div style="font-family:var(--mono);font-size:8px;color:var(--t3);margin-top:2px">RGB</div></div>
-              <div style="background:#0c0c0c;border:1px solid var(--b);border-radius:4px;padding:8px;text-align:center"><div style="font-family:var(--mono);font-size:10px;color:var(--acc)">73,100,48</div><div style="font-family:var(--mono);font-size:8px;color:var(--t3);margin-top:2px">HSL</div></div>
-            </div>
-          </div>
-          <div>
-            <div class="d-lbl">Palette</div>
-            <div class="d-color-row"><div class="d-swatch" style="background:#1a1a00"></div><div class="d-swatch" style="background:#4d5c00"></div><div class="d-swatch" style="background:#8ca300"></div><div class="d-swatch" style="background:#d6f500"></div><div class="d-swatch" style="background:#e8ff66"></div></div>
-            <div style="font-family:var(--mono);font-size:8px;color:var(--t3);margin-top:8px">Cliquer pour copier</div>
-          </div>
-        </div>
-        <div class="d-notice">Palettes complementaire, analogique, triadique</div>
-      </div>
-
-      <!-- Encodage -->
-      <div class="d-panel" id="dp-enc">
-        <div style="max-width:480px">
-          <div class="d-lbl">Entree</div>
-          <div class="d-fake-input">Bonjour ZEKIT v1 !</div>
-          <div style="display:flex;gap:5px;flex-wrap:wrap;margin:10px 0">
-            <div class="d-btn d-btn-acc">Base64</div><div class="d-btn d-btn-sec">URL</div><div class="d-btn d-btn-sec">Hex</div><div class="d-btn d-btn-sec">Binaire</div><div class="d-btn d-btn-sec">Morse</div>
-          </div>
-          <div class="d-lbl">Resultat — Base64</div>
-          <div class="d-output">Qm9uam91ciBaRUtJVCB2MSAh</div>
-        </div>
-        <div class="d-notice">8 methodes encodage / decodage</div>
-      </div>
-
-      <!-- Pseudo -->
-      <div class="d-panel" id="dp-pseudo">
-        <div class="d-lbl">Style : Japonais / Anime</div>
-        <div class="d-chips">
-          <div class="d-chip">KageRyu</div><div class="d-chip">OniArashi</div><div class="d-chip">YamiKira</div><div class="d-chip">TsukiRaiden</div>
-          <div class="d-chip">KazeNami</div><div class="d-chip">HikariRyu</div><div class="d-chip">InazumaX</div><div class="d-chip">KuroTora</div>
-        </div>
-        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:12px">
-          <div class="d-btn d-btn-sec" style="font-size:8px;padding:4px 10px">Gaming</div>
-          <div class="d-btn d-btn-acc" style="font-size:8px;padding:4px 10px">Discord</div>
-          <div class="d-btn d-btn-sec" style="font-size:8px;padding:4px 10px">Hacker</div>
-          <div class="d-btn d-btn-sec" style="font-size:8px;padding:4px 10px">Fantasy</div>
-        </div>
-        <div class="d-notice">14 styles — jusqu a 40 pseudos en un clic</div>
-      </div>
-
-      <!-- Coffre -->
-      <div class="d-panel" id="dp-coffre">
-        <div class="d-row">
-          <div>
-            <div class="d-lbl">Entrees chiffrees</div>
-            <div style="display:flex;flex-direction:column;gap:5px">
-              <div style="background:var(--b2);border-radius:4px;padding:9px 12px;display:flex;align-items:center;gap:9px"><div style="flex:1;font-family:var(--mono);font-size:10px;color:var(--t)">Discord — MonPseudo</div><div style="font-family:var(--mono);font-size:7px;padding:2px 6px;background:#0e0e0e;color:var(--t2)">COMPTE</div><div style="font-family:var(--mono);font-size:9px;color:var(--t2)">••••••••</div></div>
-              <div style="background:var(--b2);border-radius:4px;padding:9px 12px;display:flex;align-items:center;gap:9px"><div style="flex:1;font-family:var(--mono);font-size:10px;color:var(--t)">Gmail Pro</div><div style="font-family:var(--mono);font-size:7px;padding:2px 6px;background:#0e0e0e;color:var(--t2)">EMAIL</div><div style="font-family:var(--mono);font-size:9px;color:var(--t2)">••••••••</div></div>
-              <div style="background:var(--b2);border-radius:4px;padding:9px 12px;display:flex;align-items:center;gap:9px"><div style="flex:1;font-family:var(--mono);font-size:10px;color:var(--t)">API GitHub</div><div style="font-family:var(--mono);font-size:7px;padding:2px 6px;background:#0e0e0e;color:var(--t2)">CLE</div><div style="font-family:var(--mono);font-size:9px;color:var(--t2)">••••••••</div></div>
-            </div>
-          </div>
-          <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;min-height:140px">
-            <div style="font-size:36px;opacity:.35">&#128274;</div>
-            <div style="font-family:var(--mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--t2)">Chiffrement XOR</div>
-            <div style="font-size:11px;color:var(--t3);text-align:center;max-width:200px;line-height:1.7">Fichier .zekit illisible sans mot de passe</div>
-            <div class="d-btn d-btn-acc">Enregistrer .zekit</div>
-          </div>
-        </div>
-        <div class="d-notice">Ouvrir un fichier .zekit existant dans l application</div>
-      </div>
-
-      <!-- IA Humaniser — VIP -->
-      <div class="d-panel" id="dp-humanize">
-        <div class="d-row">
-          <div>
-            <div class="d-lbl gold">Detection IA</div>
-            <div class="d-fake-textarea" style="height:110px;color:var(--t2);font-size:11px">Ce texte presente des caracteristiques notables associees aux contenus generes par intelligence artificielle, notamment une structure tres reguliere et un vocabulaire homogene...</div>
-            <div style="display:flex;gap:6px;margin-top:10px">
-              <div class="d-btn d-btn-gold">Analyser</div>
-              <div class="d-btn d-btn-sec">Humaniser</div>
-            </div>
-          </div>
-          <div>
-            <div class="d-lbl gold">Score humain</div>
-            <div style="display:flex;align-items:center;gap:16px;margin-bottom:12px">
-              <div class="d-score-ring">
-                <svg width="80" height="80" viewBox="0 0 80 80">
-                  <circle fill="none" stroke="var(--b2)" stroke-width="7" cx="40" cy="40" r="30"/>
-                  <circle fill="none" stroke="#FFD700" stroke-width="7" stroke-linecap="round" cx="40" cy="40" r="30" stroke-dasharray="188.5" stroke-dashoffset="113"/>
-                </svg>
-                <div class="d-score-center">
-                  <div class="d-score-pct" style="color:var(--gold);font-size:18px">40%</div>
-                  <div class="d-score-lbl" style="color:var(--gold)">MIXTE</div>
-                </div>
-              </div>
-              <div>
-                <div style="font-family:var(--disp);font-size:18px;font-weight:800;color:var(--gold);margin-bottom:5px">Mixte</div>
-                <div style="font-family:var(--mono);font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--t3)">Ameliorable</div>
-              </div>
-            </div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px">
-              <div style="background:var(--s);border:1px solid var(--b);border-radius:3px;padding:7px 9px"><div style="font-family:var(--mono);font-size:7px;letter-spacing:1px;text-transform:uppercase;color:var(--t3);margin-bottom:4px">Variete</div><div style="height:3px;background:var(--b2);border-radius:2px;overflow:hidden"><div style="width:45%;height:100%;background:var(--gold)"></div></div></div>
-              <div style="background:var(--s);border:1px solid var(--b);border-radius:3px;padding:7px 9px"><div style="font-family:var(--mono);font-size:7px;letter-spacing:1px;text-transform:uppercase;color:var(--t3);margin-bottom:4px">Spontaneite</div><div style="height:3px;background:var(--b2);border-radius:2px;overflow:hidden"><div style="width:35%;height:100%;background:#ff4d4d"></div></div></div>
-            </div>
-          </div>
-        </div>
-        <div class="d-notice-vip">★ Fonctionnalite reservee aux membres VIP — claude-haiku-4-5</div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ACTIVATE VIP -->
-<section class="wrap" id="activate" style="padding-top:40px">
-  <div class="sr"><div class="sec-eyebrow">Activation</div><h2 class="sec-title">Activer<br><em>ton VIP</em></h2></div>
+<!-- ACTIVATE -->
+<section class="section" id="activate" style="padding-top:0">
+  <div class="sr" style="text-align:center;margin-bottom:48px"><div class="sec-pill">Activation</div><h2 class="sec-title">Activer <em>ton VIP</em></h2><p class="sec-sub" style="margin:0 auto">Connecte-toi avec Discord puis colle ta clef VIP pour activer les fonctionnalites IA dans ZEKIT.</p></div>
   <div class="activate-wrap sr">
     <div class="activate-card">
       <div class="activate-top">
-        <div class="activate-top-title">Connexion Discord + Clef VIP</div>
-        <p class="activate-top-sub">Connecte-toi avec Discord puis colle ta clef VIP pour activer les fonctionnalites IA dans ZEKIT.</p>
+        <div class="activate-top-title"><span>★</span> Connexion Discord + Clef VIP</div>
+        <p class="activate-top-sub">Connecte-toi avec ton compte Discord, puis entre ta clef d activation pour debloquer toutes les fonctionnalites IA.</p>
       </div>
       <div class="activate-body">
         <div id="step-login">
@@ -663,42 +433,40 @@ footer{border-top:1px solid var(--b);padding:28px 52px;display:flex;align-items:
           </div>
           <div class="divider-or"><span>Colle ta clef VIP</span></div>
           <input type="text" class="key-input" id="key-input" placeholder="ZEKIT-XXXX-XXXX-XXXX-XXXX" maxlength="24" autocomplete="off" spellcheck="false">
-          <button class="btn-vip" style="width:100%;justify-content:center" id="btn-activate" onclick="activateKey()">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <button class="btn-vip" style="width:100%;justify-content:center;border-radius:14px" id="btn-activate" onclick="activateKey()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
             Activer le VIP
           </button>
           <div id="activate-status"></div>
           <div class="divider-or"><span>Pas de clef ?</span></div>
-          <p class="hint-text">Rejoins le <strong style="color:var(--t)">serveur Discord ZEKIT</strong> pour obtenir une clef VIP aupres du createur.</p>
+          <p class="hint-text">Rejoins le <strong style="color:var(--t)">serveur Discord ZEKIT</strong> pour obtenir une clef aupres du createur.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- COMMENT CA MARCHE -->
-<section class="wrap" style="padding-top:0">
-  <div class="sr"><div class="sec-eyebrow">Guide</div><h2 class="sec-title">Comment<br><em>ca marche</em></h2></div>
-  <div class="howto-grid sr">
-    <div class="howto-step"><div class="howto-num">01</div><div class="howto-title">Telecharger</div><div class="howto-desc">Telecharge <strong style="color:var(--t)">install.zekit.exe</strong> et installe-le sur Windows. Un raccourci est cree sur le bureau automatiquement.</div></div>
-    <div class="howto-step"><div class="howto-num">02</div><div class="howto-title">Connexion Discord</div><div class="howto-desc">Au premier lancement, clique <strong style="color:#5865F2">Se connecter avec Discord</strong>. Autorise ZEKIT — lecture seule, aucun message envoye en ton nom. Session sauvegardee.</div></div>
-    <div class="howto-step"><div class="howto-num">03</div><div class="howto-title">Utiliser</div><div class="howto-desc">14 outils accessibles. Les membres <strong style="color:var(--gold)">VIP</strong> ont acces aux fonctionnalites IA en activant leur clef sur cette page.</div></div>
+<!-- HOW TO -->
+<section class="section" style="padding-top:0">
+  <div class="sr" style="text-align:center;margin-bottom:48px"><div class="sec-pill">Guide</div><h2 class="sec-title">Comment <em>ca marche</em></h2></div>
+  <div class="steps-grid sr">
+    <div class="step-card" data-n="01"><div class="step-num">01</div><div class="step-title">Telecharger</div><div class="step-desc">Telecharge <strong style="color:var(--t)">install.zekit.exe</strong> et installe-le sur Windows. Un raccourci est cree automatiquement sur le bureau.</div></div>
+    <div class="step-card" data-n="02"><div class="step-num">02</div><div class="step-title">Connexion Discord</div><div class="step-desc">Au premier lancement, clique <strong style="color:#5865F2">Se connecter avec Discord</strong>. Lecture seule — aucun message envoye en ton nom. Session sauvegardee.</div></div>
+    <div class="step-card" data-n="03"><div class="step-num">03</div><div class="step-title">Utiliser</div><div class="step-desc">14 outils accessibles en un clic. Les membres <strong style="color:var(--gold)">VIP</strong> ont acces aux fonctionnalites IA en activant leur clef sur ce site.</div></div>
   </div>
 </section>
 
 <!-- DOWNLOAD -->
-<section class="dl-section" id="telecharger">
+<section class="download-section" id="telecharger">
   <div class="dl-inner">
-    <span class="dl-tag sr">v1.0 — Windows — Gratuit</span>
-    <h2 class="dl-title sr">ZE<em>KIT</em></h2>
-    <p class="dl-subtitle sr">14 Outils — Windows 10 / 11 — 64-bit</p>
-    <div class="dl-card sr">
+    <div class="sr"><h2 class="dl-title">Telecharge <em>ZEKIT</em></h2><p class="dl-sub">Gratuit. Windows 10 / 11. Installation en 30 secondes.</p></div>
+    <div class="dl-box sr">
       <div class="dl-os">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M3 12V6.75l6-1.32V12H3zm0 .75h6v6.57l-6-1.32V12.75zM10.5 5.1l9-1.6V12h-9V5.1zM10.5 12h9v8.5l-9-1.6V12z"/></svg>
-        Windows 10 / 11
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M3 12V6.75l6-1.32V12H3zm0 .75h6v6.57l-6-1.32V12.75zM10.5 5.1l9-1.6V12h-9V5.1zM10.5 12h9v8.5l-9-1.6V12z"/></svg>
+        Windows 10 / 11 — 64-bit
       </div>
-      <div class="dl-specs"><span class="dl-spec">64-bit</span><span class="dl-spec">Installation guidee</span><span class="dl-spec">Raccourci bureau</span><span class="dl-spec">Discord requis</span></div>
-      <a href="https://github.com/Vacteici/Zekit/releases/download/v1/install.zekit.exe" class="btn-dl" download>
+      <div class="dl-specs"><span class="dl-spec">Installation guidee</span><span class="dl-spec">Raccourci bureau</span><span class="dl-spec">Discord requis</span></div>
+      <a href="download/install.zekit.exe" class="btn-hero-primary" download>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         install.zekit.exe
       </a>
@@ -709,29 +477,35 @@ footer{border-top:1px solid var(--b);padding:28px 52px;display:flex;align-items:
 
 <footer>
   <div class="ft-logo"><div class="ft-logo-mark">Z.</div><span class="ft-logo-name">Zekit</span></div>
-  <div class="ft-links"><a href="#outils">Outils</a><a href="#vip">VIP</a><a href="#demo">Demo</a><a href="#activate">Activer</a><a href="#telecharger">Telecharger</a></div>
-  <div class="ft-r"><div class="ft-author">Cree par Vacteici</div><div class="ft-copy">2026 ZEKIT v1</div></div>
+  <div class="ft-links"><a href="#outils">Outils</a><a href="#vip">VIP</a><a href="#activate">Activer</a><a href="#telecharger">Telecharger</a></div>
+  <div class="ft-right"><div class="ft-author">Cree par Vacteici</div><div class="ft-copy">2026 ZEKIT v1</div></div>
 </footer>
 
 <script>
-// ── CONFIG ────────────────────────────────────────────
-var DISCORD_CLIENT_ID = '1480627565906366514'; // Remplace par ton vrai Client ID
-var BOT_API_URL       = 'http://51.75.118.170:20152';
+// ── CONFIG ─────────────────────────────────────────────
+var DISCORD_CLIENT_ID = '1480627565906366514';
+var BOT_API_URL       = 'http://51.75.118.18:20123';
 var REDIRECT_URI      = 'https://zekit.fr/callback';
 
-// ── STATE ─────────────────────────────────────────────
+// ── STATE ──────────────────────────────────────────────
 var currentUser = null;
 
-// ── SCROLL REVEAL ─────────────────────────────────────
+// ── NAV SCROLL ─────────────────────────────────────────
+window.addEventListener('scroll', function(){
+  var nav = document.getElementById('main-nav');
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+}, {passive:true});
+
+// ── SCROLL REVEAL ──────────────────────────────────────
 var obs = new IntersectionObserver(function(entries){
   entries.forEach(function(e,i){
-    if(e.isIntersecting){ setTimeout(function(){ e.target.classList.add('in'); }, i*40); obs.unobserve(e.target); }
+    if(e.isIntersecting){ setTimeout(function(){ e.target.classList.add('in'); },i*60); obs.unobserve(e.target); }
   });
 },{threshold:.05,rootMargin:'0px 0px -20px 0px'});
 document.querySelectorAll('.sr').forEach(function(el){ obs.observe(el); });
 
-// ── TOOL CARD GLOW ─────────────────────────────────────
-document.querySelectorAll('.tool').forEach(function(c){
+// ── TOOL GLOW ──────────────────────────────────────────
+document.querySelectorAll('.tool-card').forEach(function(c){
   c.addEventListener('mousemove',function(e){
     var r=c.getBoundingClientRect();
     c.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');
@@ -739,47 +513,24 @@ document.querySelectorAll('.tool').forEach(function(c){
   });
 });
 
-// ── STAT COUNTER ──────────────────────────────────────
-var statObs = new IntersectionObserver(function(entries){
-  entries.forEach(function(e){
-    if(!e.isIntersecting) return;
-    var el = e.target.querySelector('.stat-n');
-    if(!el) return;
-    var raw = el.textContent.trim(), num = parseInt(raw);
-    if(!isNaN(num) && num > 1){
-      var s=0,dur=1200,step=16;
-      var t=setInterval(function(){
-        s+=step;el.textContent=Math.min(Math.round(num*s/dur),num);
-        if(s>=dur){el.textContent=raw;clearInterval(t);}
-      },step);
-    }
-    statObs.unobserve(e.target);
-  });
-},{threshold:.3});
-document.querySelectorAll('.stat').forEach(function(el){ statObs.observe(el); });
+// ── INFINITE SLIDER CLONE ──────────────────────────────
+(function(){
+  var track = document.getElementById('track');
+  if(!track) return;
+  var clone = track.innerHTML;
+  track.innerHTML += clone;
+})();
 
-// ── DEMO TABS ─────────────────────────────────────────
-document.querySelectorAll('.d-tab').forEach(function(tab){
-  tab.addEventListener('click',function(){
-    document.querySelectorAll('.d-tab').forEach(function(t){t.classList.remove('active');});
-    document.querySelectorAll('.d-panel').forEach(function(p){p.classList.remove('active');});
-    tab.classList.add('active');
-    var p=document.getElementById('dp-'+tab.dataset.d);
-    if(p) p.classList.add('active');
-  });
-});
-
-// ── DISCORD OAUTH2 (Implicit flow) ────────────────────
+// ── DISCORD OAUTH2 ─────────────────────────────────────
 function discordLogin() {
   var state = Math.random().toString(36).slice(2);
   sessionStorage.setItem('oauth_state', state);
-  var url = 'https://discord.com/oauth2/authorize'
+  window.location.href = 'https://discord.com/oauth2/authorize'
     +'?client_id='+DISCORD_CLIENT_ID
     +'&redirect_uri='+encodeURIComponent(REDIRECT_URI)
     +'&response_type=token'
     +'&scope='+encodeURIComponent('identify')
     +'&state='+state;
-  window.location.href = url;
 }
 
 function logout() {
@@ -787,21 +538,18 @@ function logout() {
   sessionStorage.removeItem('discord_user');
   sessionStorage.removeItem('discord_token');
   document.getElementById('nav-user').style.display   = 'none';
-  document.getElementById('nav-badge-win').style.display = 'block';
   document.getElementById('step-login').style.display = 'block';
   document.getElementById('step-key').classList.remove('show');
 }
 
 function handleCallback() {
-  // Depuis sessionStorage (via callback.html)
   var cb = sessionStorage.getItem('oauth_callback');
-  if(cb){ sessionStorage.removeItem('oauth_callback'); applyHashParams(cb); return; }
-  // Depuis le hash direct
+  if(cb){ sessionStorage.removeItem('oauth_callback'); applyHash(cb); return; }
   var hash = window.location.hash.slice(1);
-  if(hash && hash.includes('access_token')){ applyHashParams(hash); history.replaceState({},'',window.location.pathname+'#activate'); }
+  if(hash && hash.includes('access_token')){ applyHash(hash); history.replaceState({},'',window.location.pathname+'#activate'); }
 }
 
-function applyHashParams(hash) {
+function applyHash(hash) {
   var p = new URLSearchParams(hash);
   var token = p.get('access_token');
   if(!token) return;
@@ -811,6 +559,7 @@ function applyHashParams(hash) {
 
 function fetchMe(token) {
   document.getElementById('login-msg').textContent = 'Connexion...';
+  document.getElementById('btn-discord-login').disabled = true;
   fetch('https://discord.com/api/users/@me',{headers:{'Authorization':'Bearer '+token}})
     .then(function(r){return r.json();})
     .then(function(user){
@@ -818,7 +567,10 @@ function fetchMe(token) {
       sessionStorage.setItem('discord_user', JSON.stringify(user));
       applyUser(user);
     })
-    .catch(function(){ document.getElementById('login-msg').textContent = 'Erreur — reessaie'; });
+    .catch(function(){
+      document.getElementById('login-msg').textContent = 'Erreur — reessaie';
+      document.getElementById('btn-discord-login').disabled = false;
+    });
 }
 
 function applyUser(user) {
@@ -826,26 +578,23 @@ function applyUser(user) {
     ? 'https://cdn.discordapp.com/avatars/'+user.id+'/'+user.avatar+'.png?size=64'
     : 'https://cdn.discordapp.com/embed/avatars/'+(parseInt(user.id)%6)+'.png';
   var name = user.global_name || user.username;
-  // Nav
-  document.getElementById('nav-avatar').src           = av;
-  document.getElementById('nav-uname').textContent    = name;
-  document.getElementById('nav-user').style.display   = 'flex';
-  document.getElementById('nav-badge-win').style.display = 'none';
-  // Activate section
+  document.getElementById('nav-avatar').src = av;
+  document.getElementById('nav-uname').textContent = name;
+  document.getElementById('nav-user').style.display = 'flex';
   document.getElementById('step-login').style.display = 'none';
   document.getElementById('step-key').classList.add('show');
-  document.getElementById('key-avatar').src           = av;
-  document.getElementById('key-uname').textContent    = name;
-  document.getElementById('key-utag').textContent     = '@' + user.username;
-  document.getElementById('login-msg').textContent    = '';
+  document.getElementById('key-avatar').src = av;
+  document.getElementById('key-uname').textContent = name;
+  document.getElementById('key-utag').textContent = '@'+user.username;
+  document.getElementById('login-msg').textContent = '';
 }
 
-// ── ACTIVATION CLEF VIP ───────────────────────────────
+// ── ACTIVATION CLEF ────────────────────────────────────
 function activateKey() {
   if(!currentUser) return;
   var key = document.getElementById('key-input').value.trim().toUpperCase();
   if(!key || !key.startsWith('ZEKIT-') || key.length < 20){
-    setStatus('Clef invalide — format : ZEKIT-XXXX-XXXX-XXXX-XXXX', 'err'); return;
+    setStatus('Clef invalide — format : ZEKIT-XXXX-XXXX-XXXX-XXXX','err'); return;
   }
   var btn = document.getElementById('btn-activate');
   btn.disabled = true;
@@ -860,7 +609,7 @@ function activateKey() {
   .then(function(r){return r.json();})
   .then(function(d){
     btn.disabled = false;
-    btn.textContent = '★ Activer le VIP';
+    btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Activer le VIP';
     if(d.ok){
       setStatus('VIP active ! Relance ZEKIT pour acceder aux fonctionnalites IA.','ok');
       document.getElementById('key-input').value = '';
@@ -870,8 +619,10 @@ function activateKey() {
   })
   .catch(function(){
     btn.disabled = false;
-    btn.textContent = '★ Activer le VIP';
-    setStatus('Erreur reseau — verifie ta connexion','err');
+    btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Activer le VIP';
+    fetch(BOT_API_URL+'/ping')
+      .then(function(){ setStatus('Erreur — reessaie.','err'); })
+      .catch(function(){ setStatus('Bot ZEKIT hors ligne — contacte le createur.','err'); });
   });
 }
 
@@ -881,20 +632,17 @@ function setStatus(msg, type) {
   el.textContent = msg;
 }
 
-// ── AUTO-FORMAT CLEF ──────────────────────────────────
+// ── AUTO-FORMAT CLEF ───────────────────────────────────
 document.getElementById('key-input').addEventListener('input',function(){
   var v = this.value.replace(/[^A-Z0-9]/gi,'').toUpperCase();
   if(v.startsWith('ZEKIT')) v = v.slice(5);
   v = v.replace(/^-*/,'');
-  var parts=[];
-  for(var i=0;i<v.length&&parts.length<4;i+=4) parts.push(v.slice(i,i+4));
+  var parts=[]; for(var i=0;i<v.length&&parts.length<4;i+=4) parts.push(v.slice(i,i+4));
   this.value = parts.length ? 'ZEKIT-'+parts.join('-') : '';
 });
-document.getElementById('key-input').addEventListener('keydown',function(e){
-  if(e.key==='Enter') activateKey();
-});
+document.getElementById('key-input').addEventListener('keydown',function(e){ if(e.key==='Enter') activateKey(); });
 
-// ── INIT ─────────────────────────────────────────────
+// ── INIT ───────────────────────────────────────────────
 var su = sessionStorage.getItem('discord_user');
 var st = sessionStorage.getItem('discord_token');
 if(su && st){ try{ applyUser(JSON.parse(su)); }catch(e){} }
