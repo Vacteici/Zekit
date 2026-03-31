@@ -1,179 +1,325 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ZEKIT</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZEKIT — Intelligence Artificielle pour le texte</title>
+<meta name="description" content="Détectez l'IA, humanisez vos contenus, simplifiez le complexe. Application Windows gratuite.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{--bg:#06060a;--s:#0d0d14;--b:#161622;--b2:#22222e;--acc:#d6f500;--acc2:#c4df00;--t:#eeeef5;--t2:#8888a8;--t3:#3a3a50;--sans:'DM Sans',sans-serif;--mono:'DM Mono',monospace;--disp:'Syne',sans-serif;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--t);font-family:var(--sans);overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");pointer-events:none;z-index:999;opacity:.5;}
 
-    body {
-      min-height: 100vh;
-      background: #07070f;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      color: #fff;
-    }
+/* NAV */
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{font-size:13px;font-weight:400;color:var(--t2);text-decoration:none;transition:color .14s;}
+.nav-links a:hover{color:var(--t);}
+@media(max-width:768px){.nav-links{display:none;}}
 
-    .bg {
-      position: fixed;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 60% 40% at 50% 50%, #1a0050 0%, transparent 70%),
-        #07070f;
-      z-index: 0;
-    }
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;padding:0 5vw;display:flex;align-items:center;justify-content:space-between;transition:background .3s,border .3s;}
+nav.scrolled{background:rgba(6,6,10,.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--b);}
+.nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none;}
+.nlm{width:34px;height:34px;background:var(--acc);border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:500;font-size:15px;color:#000;}
+.nln{font-family:var(--disp);font-size:17px;font-weight:700;color:var(--t);}
+.ncta{padding:9px 22px;background:var(--acc);color:#000;border:none;border-radius:50px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:7px;}
+.ncta:hover{background:var(--acc2);transform:translateY(-1px);box-shadow:0 8px 24px rgba(214,245,0,.2);}
 
-    .card {
-      position: relative;
-      z-index: 1;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 20px;
-      padding: 56px 48px;
-      text-align: center;
-      width: 420px;
-      max-width: 94vw;
-      backdrop-filter: blur(12px);
-    }
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 5vw 80px;position:relative;overflow:hidden;}
+.hblob{position:absolute;border-radius:50%;filter:blur(130px);opacity:.14;pointer-events:none;animation:bfloat 9s ease-in-out infinite;}
+.hblob1{width:600px;height:600px;background:var(--acc);top:-150px;left:-80px;}
+.hblob2{width:400px;height:400px;background:#00c4ff;bottom:-100px;right:-40px;animation-delay:-4.5s;}
+@keyframes bfloat{0%,100%{transform:translate(0,0);}50%{transform:translate(28px,18px);}}
+.hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(214,245,0,.038) 1px,transparent 1px),linear-gradient(90deg,rgba(214,245,0,.038) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse 80% 70% at 50% 50%,black 20%,transparent 100%);pointer-events:none;}
+.hero-inner{position:relative;z-index:1;max-width:860px;}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:5px 16px 5px 5px;background:rgba(214,245,0,.06);border:1px solid rgba(214,245,0,.12);border-radius:50px;margin-bottom:28px;}
+.eyebrow-dot{width:22px;height:22px;background:var(--acc);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;}
+.eyebrow span{font-family:var(--mono);font-size:11px;color:var(--acc);letter-spacing:1px;}
+h1{font-family:var(--disp);font-size:clamp(50px,9vw,96px);font-weight:800;line-height:.93;letter-spacing:-2px;margin-bottom:24px;}
+h1 .dim{color:rgba(238,238,245,.3);}
+h1 em{font-style:normal;color:var(--acc);}
+.hero-desc{font-size:clamp(14px,2vw,18px);font-weight:300;color:var(--t2);max-width:560px;margin:0 auto 40px;line-height:1.8;}
+.ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.btn-p{display:inline-flex;align-items:center;gap:8px;padding:14px 30px;border-radius:50px;font-size:14px;font-weight:600;text-decoration:none;background:var(--acc);color:#000;transition:all .2s;border:none;cursor:pointer;}
+.btn-p:hover{background:var(--acc2);transform:translateY(-2px);box-shadow:0 14px 36px rgba(214,245,0,.18);}
+.btn-g{display:inline-flex;align-items:center;gap:8px;padding:14px 30px;border-radius:50px;font-size:14px;font-weight:500;text-decoration:none;background:transparent;color:var(--t2);border:1px solid var(--b2);transition:all .2s;}
+.btn-g:hover{border-color:var(--acc);color:var(--acc);}
+.hero-meta{display:flex;gap:24px;justify-content:center;margin-top:20px;flex-wrap:wrap;}
+.hm{font-family:var(--mono);font-size:11px;color:var(--t3);display:flex;align-items:center;gap:6px;}
+.hm::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--t3);}
 
-    .logo {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 6px;
-      color: rgba(255,255,255,0.35);
-      margin-bottom: 40px;
-      text-transform: uppercase;
-    }
+/* PREVIEW */
+.prev-section{padding:0 5vw 100px;overflow:hidden;position:relative;}
+.prev-fade-t{position:absolute;top:0;left:0;right:0;height:60px;background:linear-gradient(var(--bg),transparent);z-index:2;}
+.prev-fade-b{position:absolute;bottom:0;left:0;right:0;height:100px;background:linear-gradient(transparent,var(--bg));z-index:2;}
+.prev-win{max-width:860px;margin:0 auto;position:relative;z-index:1;}
+.prev-bar{height:36px;background:var(--b);border-radius:12px 12px 0 0;display:flex;align-items:center;padding:0 14px;gap:6px;border:1px solid var(--b2);border-bottom:none;}
+.pd{width:9px;height:9px;border-radius:50%;}
+.prev-body{background:var(--s);border:1px solid var(--b2);border-top:none;border-radius:0 0 12px 12px;padding:18px;}
+.prev-tabs{display:flex;gap:4px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--b);}
+.pt-active{padding:5px 14px;border-radius:50px;font-family:var(--mono);font-size:9px;font-weight:500;background:rgba(255,61,61,.12);color:#ff4d4d;letter-spacing:.5px;}
+.pt-ghost{padding:5px 14px;border-radius:50px;font-family:var(--mono);font-size:9px;color:var(--t3);}
+.score-row{display:flex;align-items:center;gap:18px;padding:14px;background:var(--bg);border-radius:10px;border:1px solid var(--b);}
+.prev-ring{position:relative;width:68px;height:68px;flex-shrink:0;}
+.prev-ring svg{transform:rotate(-90deg);}
+.prc{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.prpct{font-family:var(--mono);font-size:16px;color:#ff4d4d;font-weight:500;}
+.prsub{font-family:var(--mono);font-size:7px;color:var(--t3);letter-spacing:1px;margin-top:1px;}
+.prev-verdict{font-family:var(--disp);font-size:18px;font-weight:700;color:#ff4d4d;margin-bottom:4px;}
+.prev-expl{font-size:11px;color:var(--t2);line-height:1.6;}
+.ind-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:10px;}
+.ind{background:var(--bg);border:1px solid var(--b);border-radius:8px;padding:8px 10px;}
+.ind-l{font-family:var(--mono);font-size:7px;letter-spacing:1px;text-transform:uppercase;color:var(--t3);margin-bottom:5px;}
+.ind-bar{height:3px;background:var(--b2);border-radius:2px;overflow:hidden;margin-bottom:4px;}
+.ind-f{height:100%;border-radius:2px;}
+.ind-v{font-family:var(--mono);font-size:10px;font-weight:500;}
 
-    .lock-icon {
-      width: 56px;
-      height: 56px;
-      margin: 0 auto 28px;
-      background: rgba(130,80,255,0.15);
-      border: 1px solid rgba(130,80,255,0.35);
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+/* TOOLS */
+.tools-section{padding:100px 5vw;}
+.stag{font-family:var(--mono);font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--acc);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.stag::before{content:'';width:18px;height:1px;background:var(--acc);}
+.sh2{font-family:var(--disp);font-size:clamp(34px,5vw,58px);font-weight:800;letter-spacing:-1.5px;line-height:1;margin-bottom:12px;}
+.sh2 em{font-style:normal;color:var(--acc);}
+.ssub{font-size:15px;font-weight:300;color:var(--t2);max-width:500px;line-height:1.8;margin-bottom:56px;}
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;border:1px solid var(--b);border-radius:14px;overflow:hidden;}
+.tcell{padding:38px 32px;background:var(--s);transition:background .2s;position:relative;overflow:hidden;}
+.tcell::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:transparent;transition:background .2s;}
+.tcell:hover{background:var(--b);}
+.tcell:hover::before{background:var(--acc);}
+.tnum{font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:2px;margin-bottom:18px;}
+.tico{width:44px;height:44px;border-radius:11px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:18px;}
+.tname{font-family:var(--disp);font-size:20px;font-weight:700;color:var(--t);margin-bottom:9px;}
+.tdesc{font-size:13px;font-weight:300;color:var(--t2);line-height:1.8;}
+.ttags{display:flex;gap:5px;margin-top:14px;flex-wrap:wrap;}
+.ttag{font-family:var(--mono);font-size:8px;letter-spacing:1px;padding:3px 8px;border-radius:50px;border:1px solid var(--b2);color:var(--t3);}
 
-    .lock-icon svg { width: 26px; height: 26px; }
+/* HOW */
+.how-section{padding:0 5vw 100px;}
+.how-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.how-steps{display:flex;flex-direction:column;}
+.how-step{display:grid;grid-template-columns:40px 1fr;padding:22px 0;border-bottom:1px solid var(--b);}
+.how-step:last-child{border-bottom:none;}
+.hsn{font-family:var(--mono);font-size:11px;color:var(--t3);padding-top:2px;}
+.hst{font-size:15px;font-weight:600;color:var(--t);margin-bottom:5px;}
+.hsd{font-size:13px;font-weight:300;color:var(--t2);line-height:1.7;}
+.how-visual{background:var(--s);border:1px solid var(--b);border-radius:14px;padding:24px;}
+.hvt{font-family:var(--mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--t3);margin-bottom:12px;}
+.ol{background:var(--bg);border:1px solid var(--b);border-radius:8px;padding:10px 14px;margin-bottom:6px;font-size:12px;font-weight:300;color:var(--t2);line-height:1.6;}
 
-    h1 {
-      font-size: 22px;
-      font-weight: 600;
-      margin-bottom: 10px;
-      color: #fff;
-    }
+/* PRO */
+.pro-section{padding:0 5vw 100px;}
+.pro-card{border:1px solid var(--b2);border-radius:18px;background:linear-gradient(135deg,rgba(214,245,0,.025),rgba(0,196,255,.015));padding:56px;position:relative;overflow:hidden;}
+.pro-card::before{content:'';position:absolute;top:-80px;right:-80px;width:280px;height:280px;background:radial-gradient(ellipse,rgba(214,245,0,.06),transparent 70%);pointer-events:none;}
+.pro-inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;}
+.plab{font-family:var(--mono);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--acc);margin-bottom:10px;}
+.ptitle{font-family:var(--disp);font-size:clamp(26px,4vw,44px);font-weight:800;letter-spacing:-1px;color:var(--t);margin-bottom:10px;line-height:1.1;}
+.pdesc{font-size:14px;font-weight:300;color:var(--t2);line-height:1.8;max-width:460px;}
+.pfeats{display:flex;flex-direction:column;gap:8px;margin-top:18px;}
+.pfeat{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--t2);}
+.pfeat::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--acc);flex-shrink:0;}
 
-    p {
-      font-size: 14px;
-      color: rgba(255,255,255,0.45);
-      line-height: 1.6;
-      margin-bottom: 40px;
-    }
+/* DL */
+.dl-section{padding:100px 5vw;text-align:center;}
+.dlt{font-family:var(--disp);font-size:clamp(40px,7vw,76px);font-weight:800;letter-spacing:-2px;line-height:.95;margin-bottom:14px;}
+.dlt em{font-style:normal;color:var(--acc);}
+.dlsub{font-size:14px;font-weight:300;color:var(--t2);margin-bottom:40px;}
+.dlbox{max-width:400px;margin:0 auto;background:var(--s);border:1px solid var(--b2);border-radius:18px;padding:32px;display:flex;flex-direction:column;align-items:center;gap:16px;}
+.dlos{font-family:var(--mono);font-size:11px;color:var(--t3);display:flex;align-items:center;gap:6px;}
+.dlspecs{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
+.dlspec{font-family:var(--mono);font-size:10px;color:var(--t3);display:flex;align-items:center;gap:5px;}
+.dlspec::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--acc);}
 
-    .btn {
-      width: 100%;
-      padding: 15px;
-      background: linear-gradient(135deg, #7c3aed, #4f46e5);
-      border: none;
-      border-radius: 12px;
-      color: #fff;
-      font-size: 15px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: opacity 0.2s, transform 0.15s;
-      letter-spacing: 0.5px;
-    }
+/* FOOTER */
+footer{border-top:1px solid var(--b);padding:26px 5vw;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+.ftl{display:flex;align-items:center;gap:8px;}
+.ftm{width:24px;height:24px;background:var(--acc);border-radius:7px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:12px;color:#000;}
+.ftn{font-family:var(--mono);font-size:11px;color:var(--t3);letter-spacing:2px;text-transform:uppercase;}
 
-    .btn:hover { opacity: 0.88; transform: translateY(-1px); }
-    .btn:active { transform: translateY(0); }
-    .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.ft-links-row{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;margin-bottom:10px;}
+.ft-links-row a{font-size:12px;color:var(--t3);text-decoration:none;transition:color .14s;}
+.ft-links-row a:hover{color:var(--t2);}
+.ftr{font-family:var(--mono);font-size:10px;color:var(--t3);}
 
-    .status {
-      margin-top: 18px;
-      font-size: 13px;
-      color: rgba(255,255,255,0.4);
-      min-height: 20px;
-    }
+/* REVEAL */
+.sr{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease;}
+.sr.in{opacity:1;transform:translateY(0);}
+.d1{transition-delay:.06s;}.d2{transition-delay:.13s;}.d3{transition-delay:.2s;}
 
-    .status.error { color: #f87171; }
-    .status.ok { color: #4ade80; }
-
-    .spinner {
-      display: inline-block;
-      width: 14px;
-      height: 14px;
-      border: 2px solid rgba(255,255,255,0.2);
-      border-top-color: #fff;
-      border-radius: 50%;
-      animation: spin 0.7s linear infinite;
-      vertical-align: middle;
-      margin-right: 6px;
-    }
-
-    @keyframes spin { to { transform: rotate(360deg); } }
-  </style>
+@media(max-width:860px){
+  .tgrid,.how-grid{grid-template-columns:1fr;}
+  .pro-inner{grid-template-columns:1fr;}
+  .pro-card{padding:30px 20px;}
+}
+</style>
 </head>
 <body>
-  <div class="bg"></div>
-  <div class="card">
-    <div class="logo">ZEKIT</div>
 
-    <div class="lock-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="3" y="11" width="18" height="11" rx="2"/>
-        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-      </svg>
+<nav id="nav">
+  <a href="/" class="nav-logo"><div class="nlm">Z.</div><span class="nln">ZEKIT</span></a>
+  <ul class="nav-links">
+    <li><a href="/#outils">Outils</a></li>
+    <li><a href="/#premium">Premium</a></li>
+    <li><a href="/#telecharger">Télécharger</a></li>
+    <li><a href="/contact.html">Contact</a></li>
+  </ul>
+  <a href="https://github.com/Vacteici/zekit/releases/latest/download/install.zekit.exe" class="ncta">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    Télécharger
+  </a>
+</nav>
+
+<section class="hero">
+  <div class="hblob hblob1"></div>
+  <div class="hblob hblob2"></div>
+  <div class="hero-inner">
+    <div class="eyebrow sr"><div class="eyebrow-dot">✦</div><span>IA · Windows · Gratuit</span></div>
+    <h1 class="sr d1">Maîtrisez<br><span class="dim">vos textes.</span></h1>
+    <p class="hero-desc sr d2">Détectez l'IA, humanisez vos contenus, simplifiez le complexe. Trois outils propulsés par intelligence artificielle dans une application Windows légère.</p>
+    <div class="ctas sr d3">
+      <a href="#telecharger" class="btn-p">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Télécharger gratuitement
+      </a>
+      <a href="#outils" class="btn-g">Voir les outils</a>
     </div>
-
-    <h1>Zone sécurisée</h1>
-    <p>Clique sur Continuer pour générer ta clé d'accès et entrer dans la zone secrète.</p>
-
-    <button class="btn" id="btn" onclick="continuer()">Continuer</button>
-    <div class="status" id="status"></div>
+    <div class="hero-meta sr d3"><span class="hm">Windows 10 / 11</span><span class="hm">Gratuit</span><span class="hm">Discord requis</span></div>
   </div>
+</section>
 
-  <script>
-    const BOT_API = "zekit-bot-production.up.railway.app"; // ← remplace par ton URL
+<!-- PREVIEW -->
+<div class="prev-section">
+  <div class="prev-fade-t"></div>
+  <div class="prev-win sr">
+    <div class="prev-bar">
+      <div class="pd" style="background:#ff5f56"></div>
+      <div class="pd" style="background:#ffbd2e"></div>
+      <div class="pd" style="background:#27c93f"></div>
+      <span style="font-family:var(--mono);font-size:9px;color:var(--t3);margin-left:10px;letter-spacing:.5px">ZEKIT — Détecteur IA</span>
+    </div>
+    <div class="prev-body">
+      <div class="prev-tabs">
+        <span class="pt-active">● Détecteur IA</span>
+        <span class="pt-ghost">Humaniser</span>
+        <span class="pt-ghost">Simplifier</span>
+      </div>
+      <div class="score-row">
+        <div class="prev-ring">
+          <svg width="68" height="68" viewBox="0 0 68 68"><circle fill="none" stroke="#161622" stroke-width="7" cx="34" cy="34" r="27"/><circle fill="none" stroke="#ff4d4d" stroke-width="7" stroke-linecap="round" cx="34" cy="34" r="27" stroke-dasharray="169.6" stroke-dashoffset="42"/></svg>
+          <div class="prc"><div class="prpct">75%</div><div class="prsub">PROB. IA</div></div>
+        </div>
+        <div style="flex:1">
+          <div class="prev-verdict">Probable IA</div>
+          <div class="prev-expl">Fluidité excessive, structure trop régulière, signature LLM détectée. Perplexité anormalement basse pour un texte humain.</div>
+        </div>
+      </div>
+      <div class="ind-grid">
+        <div class="ind"><div class="ind-l">Burstiness</div><div class="ind-bar"><div class="ind-f" style="width:28%;background:#ff4d4d"></div></div><span class="ind-v" style="color:#ff4d4d">28%</span></div>
+        <div class="ind"><div class="ind-l">Naturalité</div><div class="ind-bar"><div class="ind-f" style="width:32%;background:#ff9500"></div></div><span class="ind-v" style="color:#ff9500">32%</span></div>
+        <div class="ind"><div class="ind-l">Signature LLM</div><div class="ind-bar"><div class="ind-f" style="width:81%;background:#ff4d4d"></div></div><span class="ind-v" style="color:#ff4d4d">81%</span></div>
+        <div class="ind"><div class="ind-l">Stylométrie</div><div class="ind-bar"><div class="ind-f" style="width:68%;background:#ff4d4d"></div></div><span class="ind-v" style="color:#ff4d4d">68%</span></div>
+        <div class="ind"><div class="ind-l">Cohérence</div><div class="ind-bar"><div class="ind-f" style="width:91%;background:#ff4d4d"></div></div><span class="ind-v" style="color:#ff4d4d">91%</span></div>
+        <div class="ind"><div class="ind-l">Confiance</div><div class="ind-bar"><div class="ind-f" style="width:88%;background:#00e676"></div></div><span class="ind-v" style="color:#00e676">88%</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="prev-fade-b"></div>
+</div>
 
-    async function continuer() {
-      const btn = document.getElementById("btn");
-      const status = document.getElementById("status");
+<!-- TOOLS -->
+<section class="tools-section" id="outils">
+  <div class="sr"><div class="stag">Les outils</div><h2 class="sh2">Trois outils.<br><em>Un seul but.</em></h2><p class="ssub">Chaque outil est conçu pour une tâche précise, propulsé par de l'IA et utilisable immédiatement.</p></div>
+  <div class="tgrid sr">
+    <div class="tcell"><div class="tnum">01</div><div class="tico" style="background:rgba(255,61,61,.08);border:1px solid rgba(255,61,61,.15)">🔍</div><div class="tname">Détecteur IA</div><div class="tdesc">Analyse médico-légale multi-couches. Perplexité, burstiness, stylométrie, signature LLM. Détecte même les textes modifiés pour tromper la détection.</div><div class="ttags"><span class="ttag">Perplexité</span><span class="ttag">Burstiness</span><span class="ttag">Score IA</span></div></div>
+    <div class="tcell"><div class="tnum">02</div><div class="tico" style="background:rgba(214,245,0,.06);border:1px solid rgba(214,245,0,.12)">✦</div><div class="tname">Humaniser</div><div class="tdesc">Transforme un texte IA en texte naturel indétectable. Niveau, style, intensité et imperfections configurables. Vérification du score après humanisation.</div><div class="ttags"><span class="ttag">Réécriture</span><span class="ttag">Indétectable</span><span class="ttag">Score avant/après</span></div></div>
+    <div class="tcell"><div class="tnum">03</div><div class="tico" style="background:rgba(0,229,255,.06);border:1px solid rgba(0,229,255,.12)">◈</div><div class="tname">Simplifier</div><div class="tdesc">Rend accessible n'importe quel texte complexe ou technique. Adapte le niveau, la longueur et le style à ton audience cible.</div><div class="ttags"><span class="ttag">Vulgarisation</span><span class="ttag">Niveau cible</span><span class="ttag">Multi-format</span></div></div>
+  </div>
+</section>
 
-      btn.disabled = true;
-      status.className = "status";
-      status.innerHTML = '<span class="spinner"></span> Génération de ta clé…';
+<!-- HOW -->
+<section class="how-section">
+  <div class="how-grid">
+    <div class="sr">
+      <div class="stag">Comment ça marche</div>
+      <h2 class="sh2">Simple.<br><em>Efficace.</em></h2>
+      <div class="how-steps">
+        <div class="how-step"><div class="hsn">01</div><div><div class="hst">Télécharge et connecte</div><div class="hsd">Installe ZEKIT et connecte-toi avec Discord. La session est mémorisée automatiquement.</div></div></div>
+        <div class="how-step"><div class="hsn">02</div><div><div class="hst">Colle ton texte</div><div class="hsd">Choisis l'outil, colle ou tape ton texte. L'IA se charge du reste en quelques secondes.</div></div></div>
+        <div class="how-step"><div class="hsn">03</div><div><div class="hst">Analyse et affine</div><div class="hsd">Consulte le résultat détaillé, ajuste les paramètres, régénère ou copie d'un clic.</div></div></div>
+      </div>
+    </div>
+    <div class="how-visual sr d1">
+      <div class="hvt">Exemple — humanisation</div>
+      <div class="ol" style="font-size:10px;color:var(--t3);padding:6px 10px">Avant (texte IA)</div>
+      <div class="ol" style="border-color:rgba(255,61,61,.2);background:rgba(255,61,61,.03);font-size:12px"><span style="color:#ff4d4d">✗</span> "L'intelligence artificielle constitue un domaine en pleine expansion qui transforme de manière significative les processus industriels contemporains."</div>
+      <div class="ol" style="font-size:10px;color:var(--t3);padding:6px 10px;margin-top:10px">Après (humanisé)</div>
+      <div class="ol" style="border-color:rgba(214,245,0,.2);background:rgba(214,245,0,.03);font-size:12px;color:var(--t)"><span style="color:var(--acc)">✓</span> "L'IA, on en parle partout. Et pour cause — elle est en train de transformer en profondeur comment les industries fonctionnent, parfois de manière vraiment inattendue."</div>
+      <div style="display:flex;justify-content:flex-end;gap:6px;margin-top:10px">
+        <span style="font-family:var(--mono);font-size:9px;padding:4px 9px;background:rgba(0,230,118,.08);border:1px solid rgba(0,230,118,.15);border-radius:50px;color:#00e676">Score : 11% IA</span>
+        <span style="font-family:var(--mono);font-size:9px;padding:4px 9px;background:rgba(0,230,118,.08);border:1px solid rgba(0,230,118,.15);border-radius:50px;color:#00e676">✓ Indétectable</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-      try {
-        const res = await fetch(BOT_API + "/generate", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ source: "checkpoint" })
-        });
+<!-- PRO -->
+<section class="pro-section">
+  <div class="pro-card sr">
+    <div class="pro-inner">
+      <div>
+        <div class="plab">Accès avancé</div>
+        <h2 class="ptitle">Encore plus<br>puissant.</h2>
+        <p class="pdesc">Débloque des modèles IA plus avancés pour des résultats encore plus précis. Obtiens ton accès auprès du créateur via Discord.</p>
+        <div class="pfeats">
+          <div class="pfeat">Modèles IA de pointe disponibles</div>
+          <div class="pfeat">Détection encore plus précise</div>
+          <div class="pfeat">Humanisation plus indétectable</div>
+          <div class="pfeat">Activation instantanée via Discord</div>
+        </div>
+      </div>
+      <div style="flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:10px">
+        <a href="#telecharger" class="btn-p">Obtenir ZEKIT</a>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--t3)">Gratuit · Discord</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-        if (!res.ok) throw new Error("Erreur serveur");
-        const data = await res.json();
+<!-- DOWNLOAD -->
+<section class="dl-section" id="telecharger">
+  <h2 class="dlt sr">Commence<br><em>maintenant.</em></h2>
+  <p class="dlsub sr d1">Gratuit · Windows 10/11 · Connexion Discord requise</p>
+  <div class="dlbox sr d2">
+    <div class="dlos"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M3 12V6.75l6-1.32V12H3zm0 .75h6v6.57l-6-1.32V12.75zM10.5 5.1l9-1.6V12h-9V5.1zM10.5 12h9v8.5l-9-1.6V12z"/></svg>Windows 10 / 11 — 64-bit</div>
+    <div class="dlspecs"><span class="dlspec">Gratuit</span><span class="dlspec">Installation guidée</span><span class="dlspec">Discord requis</span></div>
+    <a href="https://github.com/Vacteici/zekit/releases/latest/download/install.zekit.exe" class="btn-p" download style="width:100%;justify-content:center">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      install.zekit.exe
+    </a>
+    <span style="font-family:var(--mono);font-size:10px;color:var(--t3)">Créé par Vacteici · 2026</span>
+  </div>
+</section>
 
-        // Stocke la clé localement et redirige
-        sessionStorage.setItem("zekit_key", data.key);
-        status.className = "status ok";
-        status.textContent = "✓ Clé générée ! Redirection…";
+<footer>
+  <div class="ftl"><div class="ftm">Z.</div><span class="ftn">Zekit</span></div>
+  <div class="ft-links-row">
+    <a href="/">Accueil</a>
+    <a href="/#outils">Outils</a>
+    <a href="/#premium">Premium</a>
+    <a href="/contact.html">Contact</a>
+    <a href="/politique-confidentialite.html">Confidentialité</a>
+    <a href="/mentions-legales.html">Mentions légales</a>
+    <a href="/conditions-utilisation.html">CGU</a>
+  </div>
+  <div class="ftr">© 2026 ZEKIT · Créé par Vacteici · <a href="mailto:contact@zekit.fr" style="color:var(--t3);text-decoration:none">contact@zekit.fr</a></div>
+</footer>
 
-        setTimeout(() => {
-          window.location.href = "secret.html?key=" + encodeURIComponent(data.key);
-        }, 800);
-
-      } catch (e) {
-        status.className = "status error";
-        status.textContent = "Erreur de connexion. Réessaie.";
-        btn.disabled = false;
-      }
-    }
-  </script>
+<script>
+window.addEventListener('scroll',function(){ document.getElementById('nav').classList.toggle('scrolled',window.scrollY>40); },{passive:true});
+var obs=new IntersectionObserver(function(entries){ entries.forEach(function(e,i){ if(e.isIntersecting){ setTimeout(function(){e.target.classList.add('in');},i*55); obs.unobserve(e.target); } }); },{threshold:.07,rootMargin:'0px 0px -20px 0px'});
+document.querySelectorAll('.sr').forEach(function(el){obs.observe(el);});
+</script>
 </body>
 </html>
