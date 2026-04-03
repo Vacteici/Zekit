@@ -5,203 +5,1057 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Activer Premium — ZEKIT</title>
 <meta name="description" content="Obtiens une clef Premium ZEKIT gratuitement en complétant 3 étapes rapides.">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Cabinet+Grotesk:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-<!-- Google AdSense — remplace ca-pub-XXXXXXXXXXXXXXXXX par ton Publisher ID -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
 
 <style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-:root{
-  --bg:#06060a;--s:#0d0d14;--b:#161622;--b2:#22222e;
-  --acc:#d6f500;--acc2:#c4df00;
-  --r:#ff4455;--g:#22d17a;--gold:#f0c84a;
-  --t:#eeeef5;--t2:#8888a8;--t3:#3a3a50;
-  --sans:'DM Sans',sans-serif;--mono:'DM Mono',monospace;--disp:'Syne',sans-serif;
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #050508;
+  --s: #0b0b12;
+  --b: #131320;
+  --b2: #1e1e2e;
+  --b3: #2a2a3e;
+  --acc: #c8f000;
+  --acc2: #a8cc00;
+  --acc-glow: rgba(200, 240, 0, 0.15);
+  --r: #ff3d55;
+  --g: #00e87a;
+  --g-glow: rgba(0, 232, 122, 0.12);
+  --gold: #f5c842;
+  --gold-glow: rgba(245, 200, 66, 0.1);
+  --t: #f0f0f8;
+  --t2: #7878a0;
+  --t3: #2e2e46;
+  --sans: 'DM Sans', sans-serif;
+  --mono: 'DM Mono', monospace;
+  --disp: 'Bebas Neue', sans-serif;
+  --r8: 8px;
+  --r12: 12px;
+  --r16: 16px;
+  --r20: 20px;
+  --r24: 24px;
 }
-html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--t);font-family:var(--sans);min-height:100vh;overflow-x:hidden;}
-body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(214,245,0,.012) 1px,transparent 1px),linear-gradient(90deg,rgba(214,245,0,.012) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0;}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;padding:0 5vw;display:flex;align-items:center;justify-content:space-between;background:rgba(6,6,10,.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--b);}
-.nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none;}
-.nlm{width:34px;height:34px;background:var(--acc);border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:500;font-size:15px;color:#000;}
-.nln{font-family:var(--disp);font-size:17px;font-weight:700;color:var(--t);}
-.nav-back{font-size:13px;color:var(--t2);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color .15s;}
-.nav-back:hover{color:var(--t);}
+html { scroll-behavior: smooth; }
 
-/* HERO */
-.hero{padding:110px 5vw 60px;text-align:center;position:relative;z-index:1;}
-.hero-kicker{display:inline-flex;align-items:center;gap:8px;padding:5px 16px 5px 5px;background:rgba(240,200,74,.07);border:1px solid rgba(240,200,74,.15);border-radius:50px;margin-bottom:24px;}
-.hero-kicker-ico{width:24px;height:24px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;}
-.hero-kicker span{font-family:var(--mono);font-size:11px;color:var(--gold);letter-spacing:1px;}
-.hero-h1{font-family:var(--disp);font-size:clamp(36px,6vw,64px);font-weight:800;letter-spacing:-2px;line-height:1;color:var(--t);margin-bottom:16px;}
-.hero-h1 em{font-style:normal;color:var(--acc);}
-.hero-sub{font-size:15px;font-weight:300;color:var(--t2);max-width:520px;margin:0 auto 12px;line-height:1.8;}
-.hero-note{font-family:var(--mono);font-size:11px;color:var(--t3);letter-spacing:.5px;}
+body {
+  background: var(--bg);
+  color: var(--t);
+  font-family: var(--sans);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
 
-/* PROGRESS HEADER */
-.progress-header{max-width:640px;margin:0 auto 48px;padding:0 5vw;position:relative;z-index:1;}
-.progress-steps{display:flex;align-items:center;gap:0;margin-bottom:12px;}
-.ps{flex:1;display:flex;align-items:center;gap:0;}
-.ps-circle{width:36px;height:36px;border-radius:50%;border:2px solid var(--b2);background:var(--bg);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:12px;font-weight:600;color:var(--t3);flex-shrink:0;transition:all .3s;position:relative;z-index:1;}
-.ps-circle.done{background:var(--g);border-color:var(--g);color:#000;}
-.ps-circle.active{background:var(--acc);border-color:var(--acc);color:#000;box-shadow:0 0 16px rgba(214,245,0,.3);}
-.ps-line{flex:1;height:2px;background:var(--b2);transition:background .4s;}
-.ps-line.done{background:var(--g);}
-.ps-labels{display:flex;justify-content:space-between;padding:0 4px;}
-.ps-lbl{font-family:var(--mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--t3);text-align:center;width:36px;}
-.ps-lbl.active{color:var(--acc);}
-.ps-lbl.done{color:var(--g);}
+/* ── NOISE TEXTURE ── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: .6;
+}
 
-/* MAIN CARD */
-.main-wrap{max-width:640px;margin:0 auto;padding:0 5vw 80px;position:relative;z-index:1;}
+/* ── GRID BG ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(200,240,0,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200,240,0,.025) 1px, transparent 1px);
+  background-size: 52px 52px;
+  pointer-events: none;
+  z-index: 0;
+}
 
-/* STEP CARD */
-.step-card{background:var(--s);border:1px solid var(--b2);border-radius:20px;overflow:hidden;display:none;}
-.step-card.active{display:block;animation:cardIn .3s ease;}
-@keyframes cardIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.step-card-top{padding:28px 32px 24px;position:relative;}
-.step-card-top::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--acc),transparent);}
-.step-num-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;background:rgba(214,245,0,.08);border:1px solid rgba(214,245,0,.15);border-radius:50px;font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--acc);margin-bottom:14px;}
-.step-title{font-family:var(--disp);font-size:26px;font-weight:800;letter-spacing:-.5px;color:var(--t);margin-bottom:6px;}
-.step-desc{font-size:14px;font-weight:300;color:var(--t2);line-height:1.8;}
+/* ── GLOW ORBS ── */
+.orb {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(80px);
+  z-index: 0;
+}
+.orb-1 {
+  width: 500px; height: 500px;
+  top: -200px; left: -100px;
+  background: radial-gradient(circle, rgba(200,240,0,.06) 0%, transparent 70%);
+}
+.orb-2 {
+  width: 400px; height: 400px;
+  top: 40%; right: -150px;
+  background: radial-gradient(circle, rgba(0,232,122,.04) 0%, transparent 70%);
+}
 
-/* AD AREA */
-.ad-area{background:var(--bg);border-top:1px solid var(--b);border-bottom:1px solid var(--b);padding:24px 32px;text-align:center;min-height:120px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;position:relative;}
-.ad-label{font-family:var(--mono);font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--t3);}
-.ad-placeholder{width:100%;max-width:380px;height:90px;background:var(--b);border:1px dashed var(--b2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;color:var(--t3);}
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  height: 62px;
+  padding: 0 clamp(20px, 5vw, 48px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(5, 5, 8, 0.92);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--b2);
+}
 
-/* REWARDED AD BUTTON */
-.watch-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:16px;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#000;border:none;border-radius:50px;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;margin-top:4px;}
-.watch-btn:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 10px 32px rgba(214,245,0,.2);}
-.watch-btn:disabled{opacity:.5;cursor:not-allowed;transform:none;}
-.watch-btn .wbico{font-size:20px;}
-.watch-countdown{font-family:var(--mono);font-size:12px;color:var(--t3);text-align:center;margin-top:8px;min-height:18px;}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
 
-/* STEP FOOTER */
-.step-footer{padding:20px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
-.step-status{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;}
-.status-dot{width:8px;height:8px;border-radius:50%;}
-.next-btn{padding:12px 28px;background:var(--acc);color:#000;border:none;border-radius:50px;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;display:none;}
-.next-btn.show{display:block;}
-.next-btn:hover{background:var(--acc2);transform:translateY(-1px);}
+.nlm {
+  width: 32px; height: 32px;
+  background: var(--acc);
+  border-radius: var(--r8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: #000;
+  letter-spacing: -0.5px;
+}
 
-/* SUCCESS CARD */
-#success-card{display:none;background:var(--s);border:1px solid rgba(34,209,122,.25);border-radius:20px;overflow:hidden;text-align:center;}
-#success-card.show{display:block;animation:cardIn .4s ease;}
-#success-card::before{content:'';display:block;height:2px;background:linear-gradient(90deg,transparent,var(--g),transparent);}
-.success-body{padding:40px 32px;}
-.success-ico{font-size:52px;margin-bottom:18px;display:block;}
-.success-title{font-family:var(--disp);font-size:32px;font-weight:800;letter-spacing:-1px;color:var(--g);margin-bottom:10px;}
-.success-sub{font-size:14px;font-weight:300;color:var(--t2);line-height:1.8;max-width:420px;margin:0 auto 28px;}
-.key-display{display:flex;align-items:center;gap:10px;background:var(--bg);border:1px solid rgba(34,209,122,.2);border-radius:12px;padding:14px 18px;margin:0 auto 20px;max-width:440px;}
-.key-value{flex:1;font-family:var(--mono);font-size:15px;font-weight:600;letter-spacing:2px;color:var(--g);text-align:left;word-break:break-all;}
-.copy-btn{padding:8px 16px;background:rgba(34,209,122,.1);border:1px solid rgba(34,209,122,.25);border-radius:50px;font-family:var(--mono);font-size:9px;font-weight:600;color:var(--g);cursor:pointer;white-space:nowrap;transition:all .15s;flex-shrink:0;}
-.copy-btn:hover{background:var(--g);color:#000;}
-.success-instruction{background:rgba(240,200,74,.05);border:1px solid rgba(240,200,74,.15);border-radius:12px;padding:16px 20px;max-width:480px;margin:0 auto 24px;text-align:left;}
-.si-title{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
-.si-step{font-size:13px;font-weight:300;color:var(--t2);line-height:1.8;display:flex;gap:10px;}
-.si-step-n{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--gold);flex-shrink:0;margin-top:2px;}
-.discord-btn{display:inline-flex;align-items:center;gap:10px;padding:13px 28px;background:#5865F2;color:#fff;border-radius:50px;font-size:14px;font-weight:600;text-decoration:none;transition:all .2s;}
-.discord-btn:hover{background:#4752c4;transform:translateY(-1px);}
+.nln {
+  font-family: var(--disp);
+  font-size: 22px;
+  letter-spacing: 2px;
+  color: var(--t);
+  line-height: 1;
+}
 
-/* ERROR / LOADING */
-.error-box{background:rgba(255,68,85,.05);border:1px solid rgba(255,68,85,.2);border-radius:12px;padding:14px 18px;font-family:var(--mono);font-size:11px;color:#ff8891;margin-top:12px;display:none;text-align:center;}
-.loading-spin{display:inline-block;width:18px;height:18px;border:2px solid rgba(214,245,0,.2);border-top-color:var(--acc);border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:6px;}
-@keyframes spin{to{transform:rotate(360deg)}}
+.nav-back {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .5px;
+  color: var(--t2);
+  text-decoration: none;
+  padding: 7px 14px;
+  border: 1px solid var(--b2);
+  border-radius: 50px;
+  transition: all .2s;
+}
+.nav-back:hover {
+  color: var(--t);
+  border-color: var(--b3);
+  background: var(--b);
+}
 
-/* HOW IT WORKS (before starting) */
-#intro-section{position:relative;z-index:1;max-width:640px;margin:0 auto 40px;padding:0 5vw;}
-.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
-.how-card{background:var(--s);border:1px solid var(--b2);border-radius:14px;padding:18px;text-align:center;}
-.how-ico{font-size:24px;margin-bottom:8px;}
-.how-n{font-family:var(--mono);font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--acc);margin-bottom:6px;}
-.how-title{font-size:13px;font-weight:600;color:var(--t);margin-bottom:4px;}
-.how-desc{font-size:12px;font-weight:300;color:var(--t2);line-height:1.6;}
-.start-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:17px;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#000;border:none;border-radius:50px;font-size:16px;font-weight:700;cursor:pointer;transition:all .2s;margin-top:20px;}
-.start-btn:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(214,245,0,.2);}
+/* ── HERO ── */
+.hero {
+  padding: 116px clamp(20px, 5vw, 48px) 48px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
 
-@media(max-width:600px){
-  .how-grid{grid-template-columns:1fr;}
-  .step-card-top,.step-footer,.success-body{padding-left:20px;padding-right:20px;}
-  .ad-area{padding:20px;}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 14px 5px 6px;
+  background: rgba(245, 200, 66, .07);
+  border: 1px solid rgba(245, 200, 66, .2);
+  border-radius: 50px;
+  margin-bottom: 22px;
+}
+
+.hero-badge-dot {
+  width: 22px; height: 22px;
+  background: var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  line-height: 1;
+}
+
+.hero-badge span {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.hero-h1 {
+  font-family: var(--disp);
+  font-size: clamp(56px, 9vw, 96px);
+  letter-spacing: 3px;
+  line-height: .95;
+  color: var(--t);
+  margin-bottom: 18px;
+}
+
+.hero-h1 em {
+  font-style: normal;
+  color: var(--acc);
+  position: relative;
+}
+
+.hero-sub {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--t2);
+  max-width: 460px;
+  margin: 0 auto 10px;
+  line-height: 1.9;
+}
+
+.hero-note {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--t3);
+  letter-spacing: .5px;
+}
+
+/* ── HOW IT WORKS ── */
+#intro-section {
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+  margin: 0 auto 44px;
+  padding: 0 clamp(20px, 5vw, 48px);
+}
+
+.how-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.how-card {
+  background: var(--s);
+  border: 1px solid var(--b2);
+  border-radius: var(--r16);
+  padding: 20px 16px;
+  text-align: center;
+  transition: border-color .2s, transform .2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.how-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(200,240,0,.03) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.how-card:hover {
+  border-color: var(--b3);
+  transform: translateY(-2px);
+}
+
+.how-ico {
+  font-size: 26px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.how-n {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--acc);
+  margin-bottom: 6px;
+}
+
+.how-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--t);
+  margin-bottom: 5px;
+}
+
+.how-desc {
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--t2);
+  line-height: 1.7;
+}
+
+.start-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 17px 24px;
+  background: var(--acc);
+  color: #000;
+  border: none;
+  border-radius: 50px;
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .25s;
+  letter-spacing: .3px;
+  position: relative;
+  overflow: hidden;
+}
+
+.start-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,.15) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.start-btn:hover {
+  background: var(--acc2);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 48px rgba(200,240,0,.2), 0 4px 16px rgba(200,240,0,.1);
+}
+
+.start-btn:active { transform: translateY(0); }
+
+/* ── PROGRESS ── */
+#progress-header {
+  max-width: 680px;
+  margin: 0 auto 36px;
+  padding: 0 clamp(20px, 5vw, 48px);
+  position: relative;
+  z-index: 1;
+  display: none;
+}
+
+.progress-track {
+  background: var(--s);
+  border: 1px solid var(--b2);
+  border-radius: var(--r20);
+  padding: 20px 24px;
+}
+
+.progress-steps {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.ps {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.ps-circle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid var(--b3);
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--t3);
+  flex-shrink: 0;
+  transition: all .35s cubic-bezier(.4,0,.2,1);
+  position: relative;
+  z-index: 1;
+}
+
+.ps-circle.active {
+  background: var(--acc);
+  border-color: var(--acc);
+  color: #000;
+  box-shadow: 0 0 0 4px rgba(200,240,0,.12), 0 0 20px rgba(200,240,0,.2);
+}
+
+.ps-circle.done {
+  background: var(--g);
+  border-color: var(--g);
+  color: #000;
+  box-shadow: 0 0 0 4px rgba(0,232,122,.1);
+}
+
+.ps-line {
+  flex: 1;
+  height: 2px;
+  background: var(--b3);
+  transition: background .4s;
+  margin: 0 2px;
+}
+
+.ps-line.done { background: var(--g); }
+
+.ps-labels {
+  display: grid;
+  grid-template-columns: 38px 1fr 38px 1fr 38px;
+  align-items: center;
+}
+
+.ps-lbl {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+  color: var(--t3);
+  text-align: center;
+  transition: color .3s;
+}
+
+.ps-lbl-spacer { flex: 1; }
+
+.ps-lbl.active { color: var(--acc); }
+.ps-lbl.done { color: var(--g); }
+
+/* ── MAIN WRAP ── */
+.main-wrap {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 5vw, 48px) 100px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── STEP CARD ── */
+.step-card {
+  background: var(--s);
+  border: 1px solid var(--b2);
+  border-radius: var(--r20);
+  overflow: hidden;
+  display: none;
+}
+
+.step-card.active {
+  display: block;
+  animation: cardIn .35s cubic-bezier(.4,0,.2,1);
+}
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.step-accent-bar {
+  height: 3px;
+  background: linear-gradient(90deg, transparent 0%, var(--acc) 50%, transparent 100%);
+}
+
+.step-card-top {
+  padding: 28px 28px 22px;
+}
+
+.step-num-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  background: rgba(200,240,0,.07);
+  border: 1px solid rgba(200,240,0,.14);
+  border-radius: 50px;
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--acc);
+  margin-bottom: 14px;
+}
+
+.step-title {
+  font-family: var(--disp);
+  font-size: 34px;
+  letter-spacing: 1.5px;
+  color: var(--t);
+  margin-bottom: 8px;
+  line-height: 1;
+}
+
+.step-desc {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--t2);
+  line-height: 1.8;
+  max-width: 480px;
+}
+
+/* ── AD AREA ── */
+.ad-area {
+  background: var(--bg);
+  border-top: 1px solid var(--b2);
+  border-bottom: 1px solid var(--b2);
+  padding: 24px 28px;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.ad-label {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--t3);
+}
+
+.ad-placeholder {
+  width: 100%;
+  max-width: 400px;
+  height: 90px;
+  background: var(--b);
+  border: 1px dashed var(--b2);
+  border-radius: var(--r12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--t2);
+  letter-spacing: .3px;
+  gap: 8px;
+}
+
+/* ── WATCH BTN AREA ── */
+.watch-area {
+  padding: 20px 28px 4px;
+}
+
+.watch-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 15px 24px;
+  background: var(--acc);
+  color: #000;
+  border: none;
+  border-radius: 50px;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .2s;
+  position: relative;
+  overflow: hidden;
+  letter-spacing: .2px;
+}
+
+.watch-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,.15) 0%, transparent 50%);
+}
+
+.watch-btn:hover:not(:disabled) {
+  background: var(--acc2);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 30px rgba(200,240,0,.18);
+}
+
+.watch-btn:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.watch-btn .wbico { font-size: 16px; }
+
+.watch-countdown {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--t2);
+  text-align: center;
+  margin-top: 10px;
+  min-height: 16px;
+  letter-spacing: .3px;
+}
+
+/* ── STEP FOOTER ── */
+.step-footer {
+  padding: 18px 28px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  border-top: 1px solid var(--b2);
+}
+
+.step-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  transition: background .3s;
+}
+
+.status-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .5px;
+  color: var(--t2);
+  transition: color .3s;
+}
+
+.next-btn {
+  padding: 11px 24px;
+  background: var(--acc);
+  color: #000;
+  border: none;
+  border-radius: 50px;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .2s;
+  display: none;
+  letter-spacing: .2px;
+}
+
+.next-btn.show { display: block; animation: fadeUp .25s ease; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.next-btn:hover {
+  background: var(--acc2);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(200,240,0,.16);
+}
+
+/* ── ERROR BOX ── */
+.error-box {
+  background: rgba(255, 61, 85, .06);
+  border: 1px solid rgba(255, 61, 85, .2);
+  border-radius: 0 0 var(--r20) var(--r20);
+  padding: 14px 28px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: #ff7080;
+  display: none;
+  text-align: center;
+  letter-spacing: .3px;
+}
+
+/* ── LOADING SPIN ── */
+.loading-spin {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(200,240,0,.2);
+  border-top-color: var(--acc);
+  border-radius: 50%;
+  animation: spin .65s linear infinite;
+  vertical-align: middle;
+  margin-right: 6px;
+  flex-shrink: 0;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── GENERATING CARD ── */
+#generating-card {
+  display: none;
+  animation: cardIn .3s ease;
+}
+
+.gen-inner {
+  text-align: center;
+  padding: 64px 24px;
+  background: var(--s);
+  border: 1px solid var(--b2);
+  border-radius: var(--r20);
+  overflow: hidden;
+  position: relative;
+}
+
+.gen-inner::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--acc), transparent);
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: .4; }
+  50% { opacity: 1; }
+}
+
+.gen-ico {
+  font-size: 44px;
+  margin-bottom: 18px;
+  display: block;
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+.gen-title {
+  font-family: var(--disp);
+  font-size: 28px;
+  letter-spacing: 2px;
+  color: var(--t);
+  margin-bottom: 8px;
+}
+
+.gen-sub {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--t2);
+}
+
+/* ── SUCCESS CARD ── */
+#success-card {
+  display: none;
+  animation: cardIn .45s cubic-bezier(.4,0,.2,1);
+}
+
+#success-card.show { display: block; }
+
+.success-inner {
+  background: var(--s);
+  border: 1px solid rgba(0, 232, 122, .2);
+  border-radius: var(--r20);
+  overflow: hidden;
+}
+
+.success-bar {
+  height: 3px;
+  background: linear-gradient(90deg, transparent 0%, var(--g) 50%, transparent 100%);
+}
+
+.success-body {
+  padding: 44px clamp(20px, 5vw, 40px);
+  text-align: center;
+}
+
+.success-ico {
+  font-size: 50px;
+  margin-bottom: 18px;
+  display: block;
+  animation: bounceIn .5s cubic-bezier(.4,0,.2,1);
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(.6); opacity: 0; }
+  70% { transform: scale(1.1); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.success-title {
+  font-family: var(--disp);
+  font-size: 48px;
+  letter-spacing: 3px;
+  color: var(--g);
+  margin-bottom: 10px;
+  line-height: 1;
+}
+
+.success-sub {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--t2);
+  line-height: 1.8;
+  max-width: 400px;
+  margin: 0 auto 28px;
+}
+
+/* ── KEY DISPLAY ── */
+.key-wrapper {
+  background: rgba(0, 232, 122, .04);
+  border: 1px solid rgba(0, 232, 122, .18);
+  border-radius: var(--r16);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 480px;
+  margin: 0 auto 20px;
+}
+
+.key-value {
+  flex: 1;
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--g);
+  text-align: left;
+  word-break: break-all;
+  line-height: 1.4;
+}
+
+.copy-btn {
+  padding: 8px 18px;
+  background: rgba(0,232,122,.08);
+  border: 1px solid rgba(0,232,122,.2);
+  border-radius: 50px;
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--g);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all .15s;
+  flex-shrink: 0;
+  text-transform: uppercase;
+}
+
+.copy-btn:hover {
+  background: var(--g);
+  color: #000;
+  border-color: var(--g);
+}
+
+/* ── INSTRUCTIONS ── */
+.success-instructions {
+  background: rgba(245, 200, 66, .04);
+  border: 1px solid rgba(245, 200, 66, .15);
+  border-radius: var(--r16);
+  padding: 18px 22px;
+  max-width: 480px;
+  margin: 0 auto 22px;
+  text-align: left;
+}
+
+.si-title {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.si-step {
+  display: flex;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--t2);
+  line-height: 1.8;
+  margin-bottom: 2px;
+}
+
+.si-n {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--gold);
+  flex-shrink: 0;
+  margin-top: 3px;
+  min-width: 16px;
+}
+
+.cmd-badge {
+  background: rgba(200,240,0,.07);
+  border: 1px solid rgba(200,240,0,.15);
+  color: var(--acc);
+  padding: 1px 7px;
+  border-radius: 4px;
+  font-family: var(--mono);
+  font-size: 10px;
+}
+
+.key-warning {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--t3);
+  margin-bottom: 22px;
+  letter-spacing: .3px;
+}
+
+.discord-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 28px;
+  background: #5865F2;
+  color: #fff;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all .2s;
+  letter-spacing: .2px;
+}
+
+.discord-btn:hover {
+  background: #4752c4;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(88,101,242,.25);
+}
+
+/* ── GLOBAL ERROR ── */
+#global-error {
+  display: none;
+  margin-top: 24px;
+  text-align: center;
+}
+
+.global-error-box {
+  background: rgba(255,61,85,.05);
+  border: 1px solid rgba(255,61,85,.2);
+  border-radius: var(--r16);
+  padding: 16px 20px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: #ff8891;
+  margin-bottom: 14px;
+}
+
+.retry-btn {
+  padding: 10px 24px;
+  background: transparent;
+  border: 1px solid var(--b2);
+  border-radius: 50px;
+  color: var(--t2);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all .15s;
+}
+
+.retry-btn:hover {
+  border-color: var(--acc);
+  color: var(--acc);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 600px) {
+  .how-grid { grid-template-columns: 1fr; }
+  .step-card-top { padding: 22px 20px 18px; }
+  .watch-area { padding: 18px 20px 4px; }
+  .step-footer { padding: 16px 20px 18px; }
+  .ad-area { padding: 20px; }
+  nav { padding: 0 16px; }
 }
 </style>
 </head>
 <body>
 
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+
 <nav>
-  <a href="/" class="nav-logo"><div class="nlm">Z.</div><span class="nln">ZEKIT</span></a>
+  <a href="/" class="nav-logo">
+    <div class="nlm">Z</div>
+    <span class="nln">ZEKIT</span>
+  </a>
   <a href="/" class="nav-back">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
     Retour
   </a>
 </nav>
 
+<!-- ── HERO ── -->
 <section class="hero">
-  <div class="hero-kicker"><div class="hero-kicker-ico">★</div><span>Premium gratuit</span></div>
+  <div class="hero-badge">
+    <div class="hero-badge-dot">★</div>
+    <span>Premium gratuit</span>
+  </div>
   <h1 class="hero-h1">Obtiens ta clef<br><em>Premium</em></h1>
   <p class="hero-sub">Complète 3 étapes rapides pour obtenir une clef d'activation Premium — entièrement gratuite.</p>
-  <p class="hero-note">Aucun compte, aucune carte bancaire · 3 min max</p>
+  <p class="hero-note">Aucun compte · Aucune carte bancaire · 3 min max</p>
 </section>
 
-<!-- INTRO (visible avant de démarrer) -->
+<!-- ── INTRO ── -->
 <div id="intro-section">
   <div class="how-grid">
     <div class="how-card">
-      <div class="how-ico">📺</div>
-      <div class="how-n">Étape 1 · 2 · 3</div>
-      <div class="how-title">3 publicités courtes</div>
-      <div class="how-desc">Regarde une pub de quelques secondes à chaque étape.</div>
+      <span class="how-ico">📺</span>
+      <div class="how-n">Étapes 1 · 2 · 3</div>
+      <div class="how-title">3 pubs courtes</div>
+      <div class="how-desc">Une publicité de quelques secondes par étape, c'est tout.</div>
     </div>
     <div class="how-card">
-      <div class="how-ico">✅</div>
+      <span class="how-ico">⚡</span>
       <div class="how-n">Automatique</div>
       <div class="how-title">Validation instantanée</div>
-      <div class="how-desc">Chaque pub validée débloque l'étape suivante automatiquement.</div>
+      <div class="how-desc">Chaque pub complétée débloque l'étape suivante immédiatement.</div>
     </div>
     <div class="how-card">
-      <div class="how-ico">🔑</div>
+      <span class="how-ico">🔑</span>
       <div class="how-n">Résultat</div>
       <div class="how-title">Clef générée</div>
-      <div class="how-desc">Tu reçois une clef ZEKIT-XXXX à coller dans l'application.</div>
+      <div class="how-desc">Reçois ta clef ZEKIT-XXXX à coller dans l'application.</div>
     </div>
   </div>
   <button class="start-btn" onclick="startFlow()">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
     Commencer maintenant
   </button>
 </div>
 
-<!-- PROGRESS -->
-<div class="progress-header" id="progress-header" style="display:none">
-  <div class="progress-steps">
-    <div class="ps">
-      <div class="ps-circle" id="pc-1">1</div>
-      <div class="ps-line" id="pl-1"></div>
+<!-- ── PROGRESS ── -->
+<div id="progress-header">
+  <div class="progress-track">
+    <div class="progress-steps">
+      <div class="ps">
+        <div class="ps-circle" id="pc-1">1</div>
+        <div class="ps-line" id="pl-1"></div>
+      </div>
+      <div class="ps">
+        <div class="ps-circle" id="pc-2">2</div>
+        <div class="ps-line" id="pl-2"></div>
+      </div>
+      <div class="ps">
+        <div class="ps-circle" id="pc-3">3</div>
+      </div>
     </div>
-    <div class="ps">
-      <div class="ps-circle" id="pc-2">2</div>
-      <div class="ps-line" id="pl-2"></div>
+    <div class="ps-labels">
+      <span class="ps-lbl" id="pl-lbl-1">Vue</span>
+      <span></span>
+      <span class="ps-lbl" id="pl-lbl-2">Vue</span>
+      <span></span>
+      <span class="ps-lbl" id="pl-lbl-3">Vue</span>
     </div>
-    <div class="ps">
-      <div class="ps-circle" id="pc-3">3</div>
-    </div>
-  </div>
-  <div class="ps-labels">
-    <span class="ps-lbl" id="pl-lbl-1">Vue</span>
-    <span class="ps-lbl" id="pl-lbl-2">Vue</span>
-    <span class="ps-lbl" id="pl-lbl-3">Vue</span>
   </div>
 </div>
 
-<!-- STEPS CONTAINER -->
+<!-- ── STEPS ── -->
 <div class="main-wrap">
 
   <!-- STEP 1 -->
   <div class="step-card" id="step-1">
+    <div class="step-accent-bar"></div>
     <div class="step-card-top">
       <div class="step-num-badge">Étape 1 sur 3</div>
       <div class="step-title">Première vidéo</div>
@@ -209,15 +1063,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;padding:0 5vw;di
     </div>
     <div class="ad-area" id="ad-area-1">
       <div class="ad-label">Publicité</div>
-      <!-- AdSense Rewarded Ad Unit - remplace ca-pub-XXX et l'ad slot par tes vraies valeurs -->
       <div id="rewarded-ad-1">
-        <!-- Espace publicitaire (remplacé automatiquement par AdSense) -->
         <div class="ad-placeholder" id="ad-placeholder-1">
-          Chargement de la publicité…
+          <span>📡</span> Chargement de la publicité…
         </div>
       </div>
     </div>
-    <div class="step-card-top" style="padding-top:20px;padding-bottom:12px">
+    <div class="watch-area">
       <button class="watch-btn" id="watch-btn-1" onclick="watchAd(1)">
         <span class="wbico">▶</span>
         Regarder la publicité
@@ -227,7 +1079,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;padding:0 5vw;di
     <div class="step-footer">
       <div class="step-status">
         <div class="status-dot" id="dot-1" style="background:var(--t3)"></div>
-        <span id="status-txt-1">En attente</span>
+        <span class="status-label" id="status-txt-1">En attente</span>
       </div>
       <button class="next-btn" id="next-1" onclick="goStep(2)">Étape suivante →</button>
     </div>
@@ -236,18 +1088,21 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;padding:0 5vw;di
 
   <!-- STEP 2 -->
   <div class="step-card" id="step-2">
+    <div class="step-accent-bar"></div>
     <div class="step-card-top">
       <div class="step-num-badge">Étape 2 sur 3</div>
       <div class="step-title">Deuxième vidéo</div>
-      <div class="step-desc">Encore une courte publicité. Tu es à mi-chemin !</div>
+      <div class="step-desc">Encore une courte publicité. Tu es à mi-chemin — courage !</div>
     </div>
     <div class="ad-area" id="ad-area-2">
       <div class="ad-label">Publicité</div>
       <div id="rewarded-ad-2">
-        <div class="ad-placeholder" id="ad-placeholder-2">Chargement de la publicité…</div>
+        <div class="ad-placeholder" id="ad-placeholder-2">
+          <span>📡</span> Chargement de la publicité…
+        </div>
       </div>
     </div>
-    <div class="step-card-top" style="padding-top:20px;padding-bottom:12px">
+    <div class="watch-area">
       <button class="watch-btn" id="watch-btn-2" onclick="watchAd(2)">
         <span class="wbico">▶</span>
         Regarder la publicité
@@ -257,7 +1112,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;padding:0 5vw;di
     <div class="step-footer">
       <div class="step-status">
         <div class="status-dot" id="dot-2" style="background:var(--t3)"></div>
-        <span id="status-txt-2">En attente</span>
+        <span class="status-label" id="status-txt-2">En attente</span>
       </div>
       <button class="next-btn" id="next-2" onclick="goStep(3)">Étape suivante →</button>
     </div>
@@ -266,6 +1121,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;padding:0 5vw;di
 
   <!-- STEP 3 -->
   <div class="step-card" id="step-3">
+    <div class="step-accent-bar"></div>
     <div class="step-card-top">
       <div class="step-num-badge">Étape 3 sur 3 — Dernière !</div>
       <div class="step-title">Dernière vidéo</div>
@@ -274,10 +1130,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;padding:0 5vw;di
     <div class="ad-area" id="ad-area-3">
       <div class="ad-label">Publicité</div>
       <div id="rewarded-ad-3">
-        <div class="ad-placeholder" id="ad-placeholder-3">Chargement de la publicité…</div>
+        <div class="ad-placeholder" id="ad-placeholder-3">
+          <span>📡</span> Chargement de la publicité…
+        </div>
       </div>
     </div>
-    <div class="step-card-top" style="padding-top:20px;padding-bottom:12px">
+    <div class="watch-area">
       <button class="watch-btn" id="watch-btn-3" onclick="watchAd(3)">
         <span class="wbico">▶</span>
         Regarder la publicité
@@ -287,7 +1145,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;padding:0 5vw;di
     <div class="step-footer">
       <div class="step-status">
         <div class="status-dot" id="dot-3" style="background:var(--t3)"></div>
-        <span id="status-txt-3">En attente</span>
+        <span class="status-label" id="status-txt-3">En attente</span>
       </div>
       <button class="next-btn" id="next-3" onclick="generateKey()">🔑 Générer ma clef !</button>
     </div>
@@ -295,51 +1153,62 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;padding:0 5vw;di
   </div>
 
   <!-- GENERATING -->
-  <div id="generating-card" style="display:none">
-    <div style="text-align:center;padding:60px 20px;background:var(--s);border:1px solid var(--b2);border-radius:20px;">
-      <div style="font-size:40px;margin-bottom:16px">⚙️</div>
-      <div style="font-family:var(--disp);font-size:22px;font-weight:700;color:var(--t);margin-bottom:8px">
-        <span class="loading-spin"></span>Génération en cours…
-      </div>
-      <div style="font-size:13px;font-weight:300;color:var(--t2)">Ta clef Premium est en cours de création.</div>
+  <div id="generating-card">
+    <div class="gen-inner">
+      <span class="gen-ico">⚙️</span>
+      <div class="gen-title"><span class="loading-spin"></span>GÉNÉRATION…</div>
+      <div class="gen-sub">Ta clef Premium est en cours de création.</div>
     </div>
   </div>
 
   <!-- SUCCESS -->
   <div id="success-card">
-    <div class="success-body">
-      <span class="success-ico">🎉</span>
-      <div class="success-title">Clef générée !</div>
-      <p class="success-sub">Voici ta clef d'activation Premium. Copie-la et colle-la dans ZEKIT pour activer les moteurs IA avancés.</p>
+    <div class="success-inner">
+      <div class="success-bar"></div>
+      <div class="success-body">
+        <span class="success-ico">🎉</span>
+        <div class="success-title">CLef générée !</div>
+        <p class="success-sub">Voici ta clef d'activation Premium. Copie-la et colle-la dans ZEKIT pour activer les moteurs IA avancés.</p>
 
-      <div class="key-display">
-        <div class="key-value" id="key-value">ZEKIT-XXXX-XXXX-XXXX-XXXX</div>
-        <button class="copy-btn" onclick="copyKey()">Copier</button>
+        <div class="key-wrapper">
+          <div class="key-value" id="key-value">ZEKIT-XXXX-XXXX-XXXX-XXXX</div>
+          <button class="copy-btn" onclick="copyKey()">Copier</button>
+        </div>
+
+        <div class="success-instructions">
+          <div class="si-title">Comment activer dans ZEKIT</div>
+          <div class="si-step">
+            <span class="si-n">1.</span>
+            <span>Lance ZEKIT sur ton PC Windows</span>
+          </div>
+          <div class="si-step">
+            <span class="si-n">2.</span>
+            <span>Dans la barre latérale, colle ta clef dans le champ <strong style="color:var(--t)">Accès Premium</strong></span>
+          </div>
+          <div class="si-step">
+            <span class="si-n">3.</span>
+            <span>Clique <strong style="color:var(--t)">OK</strong> — les moteurs avancés se débloquent instantanément</span>
+          </div>
+          <div class="si-step" style="margin-top:8px">
+            <span class="si-n">OU</span>
+            <span>Sur Discord : <span class="cmd-badge">/activervip clef:TA_CLEF</span></span>
+          </div>
+        </div>
+
+        <p class="key-warning">⚠ Cette clef est à usage unique. Ne la partage pas.</p>
+
+        <a href="https://discord.gg/TON_SERVEUR" class="discord-btn" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.1 18.08.112 18.1.124 18.111a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+          Rejoindre le Discord ZEKIT
+        </a>
       </div>
-
-      <div class="success-instruction">
-        <div class="si-title">Comment activer dans ZEKIT</div>
-        <div class="si-step"><span class="si-step-n">1.</span><span>Lance ZEKIT sur ton PC Windows</span></div>
-        <div class="si-step"><span class="si-step-n">2.</span><span>Dans la barre latérale, colle ta clef dans le champ <strong style="color:var(--t)">Accès Premium</strong></span></div>
-        <div class="si-step"><span class="si-step-n">3.</span><span>Clique <strong style="color:var(--t)">OK</strong> — les moteurs avancés se débloquent instantanément</span></div>
-        <div class="si-step" style="margin-top:8px"><span class="si-step-n">OU</span><span>Sur le serveur Discord : <code style="background:rgba(214,245,0,.08);color:var(--acc);padding:1px 6px;border-radius:4px;font-family:var(--mono);font-size:11px">/activervip clef:TA_CLEF</code></span></div>
-      </div>
-
-      <p style="font-size:12px;color:var(--t3);margin-bottom:20px;font-family:var(--mono)">⚠️ Cette clef est à usage unique. Ne la partage pas.</p>
-
-      <a href="https://discord.gg/TON_SERVEUR" class="discord-btn" target="_blank" rel="noopener">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.1 18.08.112 18.1.124 18.111a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
-        Rejoindre le Discord ZEKIT
-      </a>
     </div>
   </div>
 
   <!-- GLOBAL ERROR -->
-  <div id="global-error" style="display:none;margin-top:20px">
-    <div class="error-box" style="display:block" id="global-error-txt"></div>
-    <div style="text-align:center;margin-top:14px">
-      <button onclick="location.reload()" style="padding:10px 24px;background:var(--s);border:1px solid var(--b2);border-radius:50px;color:var(--t2);font-family:var(--mono);font-size:10px;cursor:pointer;transition:all .15s" onmouseover="this.style.borderColor='var(--acc)'" onmouseout="this.style.borderColor='var(--b2)'">Recommencer</button>
-    </div>
+  <div id="global-error">
+    <div class="global-error-box" id="global-error-txt"></div>
+    <button class="retry-btn" onclick="location.reload()">↺ RECOMMENCER</button>
   </div>
 
 </div>
@@ -347,51 +1216,45 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;padding:0 5vw;di
 <script>
 'use strict';
 
-// ── CONFIGURATION ─────────────────────────────────────
-// Remplace par ton URL Railway et le secret configuré dans les variables Railway
 var BOT_API       = 'https://zekit-bot.up.railway.app';
-var REWARD_SECRET = 'zekit_reward_secret_change_me'; // DOIT correspondre à REWARD_SECRET dans Railway
-var DISCORD_INV   = 'https://discord.gg/TON_SERVEUR';
+var REWARD_SECRET = 'zekit_reward_secret_change_me';
+var DISCORD_INV   = 'https://discord.gg/Eg7cGdqKKV';
 
-// ID des unités publicitaires Rewarded AdSense (remplace par tes vrais IDs)
-// Format : ca-pub-XXXXXXXXXX/XXXXXXXXXX
 var AD_UNITS = {
   1: { client: 'ca-pub-XXXXXXXXXXXXXXXXX', slot: '1111111111' },
   2: { client: 'ca-pub-XXXXXXXXXXXXXXXXX', slot: '2222222222' },
   3: { client: 'ca-pub-XXXXXXXXXXXXXXXXX', slot: '3333333333' },
 };
 
-// ── STATE ─────────────────────────────────────────────
 var state = {
   step: 0,
-  completed: [false, false, false], // checkpoints 0,1,2
-  adInstances: {},
+  completed: [false, false, false],
   discordUserId: null
 };
 
-// Récupérer l'ID Discord depuis sessionStorage (si connecté via le site)
 try {
   var sess = JSON.parse(sessionStorage.getItem('discord_user') || 'null');
   if (sess && sess.id) state.discordUserId = sess.id;
 } catch(e) {}
 
-// ── UTILS ──────────────────────────────────────────────
-function $(id){ return document.getElementById(id); }
+var IS_DEV = (AD_UNITS[1].client === 'ca-pub-XXXXXXXXXXXXXXXXX');
 
-function showError(stepOrGlobal, msg) {
-  if (stepOrGlobal === 'global') {
+function $(id) { return document.getElementById(id); }
+
+function showError(step, msg) {
+  if (step === 'global') {
     $('global-error').style.display = 'block';
     $('global-error-txt').textContent = msg;
   } else {
-    var el = $('err-' + stepOrGlobal);
+    var el = $('err-' + step);
     if (el) { el.style.display = 'block'; el.textContent = msg; }
   }
 }
 
 function setStepStatus(step, color, txt) {
-  var dot = $('dot-' + step), stxt = $('status-txt-' + step);
-  if (dot)  dot.style.background = color;
-  if (stxt) stxt.textContent = txt;
+  var dot = $('dot-' + step), lbl = $('status-txt-' + step);
+  if (dot) dot.style.background = color;
+  if (lbl) { lbl.textContent = txt; lbl.style.color = color; }
 }
 
 function updateProgress() {
@@ -410,7 +1273,6 @@ function updateProgress() {
   }
 }
 
-// ── FLOW CONTROL ───────────────────────────────────────
 function startFlow() {
   $('intro-section').style.display = 'none';
   $('progress-header').style.display = 'block';
@@ -418,7 +1280,6 @@ function startFlow() {
 }
 
 function goStep(n) {
-  // Hide all steps
   [1, 2, 3].forEach(function(i) {
     var c = $('step-' + i);
     if (c) c.classList.remove('active');
@@ -427,23 +1288,13 @@ function goStep(n) {
   updateProgress();
   var card = $('step-' + n);
   if (card) card.classList.add('active');
-  // Init ad for this step
   setTimeout(function() { initAd(n); }, 300);
-  // Scroll to top smoothly
-  window.scrollTo({ top: 200, behavior: 'smooth' });
+  window.scrollTo({ top: 180, behavior: 'smooth' });
 }
-
-// ── AD SYSTEM ──────────────────────────────────────────
-// Deux modes : AdSense Rewarded (production) ou simulé (dev/test)
-var IS_DEV = (AD_UNITS[1].client === 'ca-pub-XXXXXXXXXXXXXXXXX');
 
 function initAd(step) {
   var placeholder = $('ad-placeholder-' + step);
-  if (placeholder) placeholder.textContent = 'Prêt — clique pour regarder la publicité';
-  if (!IS_DEV && typeof googletag !== 'undefined') {
-    // Production : Google Ad Manager Rewarded
-    // initAdSenseRewarded(step);
-  }
+  if (placeholder) placeholder.innerHTML = '<span>✅</span> Prêt — clique sur le bouton pour lancer la publicité';
 }
 
 function watchAd(step) {
@@ -451,18 +1302,14 @@ function watchAd(step) {
   btn.disabled = true;
   btn.innerHTML = '<span class="loading-spin"></span> Chargement…';
   var cd = $('countdown-' + step);
-
   if (IS_DEV) {
-    // MODE DEV : simulation de pub (5 secondes)
     simulateAd(step, btn, cd);
   } else {
-    // MODE PRODUCTION : AdSense Rewarded Interstitial
     loadRewardedAd(step, btn, cd);
   }
 }
 
 function simulateAd(step, btn, cd) {
-  // Simulation pour dev/test — remplacer par loadRewardedAd en production
   var secs = 5;
   cd.textContent = 'Pub en cours : ' + secs + 's…';
   var iv = setInterval(function() {
@@ -478,8 +1325,6 @@ function simulateAd(step, btn, cd) {
 }
 
 function loadRewardedAd(step, btn, cd) {
-  // AdSense Rewarded Ad (Google Ad Manager)
-  // Utilise l'API adsbygoogle rewarded
   try {
     var adConfig = AD_UNITS[step];
     var adSlot = document.createElement('ins');
@@ -489,7 +1334,6 @@ function loadRewardedAd(step, btn, cd) {
     adSlot.setAttribute('data-ad-slot', adConfig.slot);
     adSlot.setAttribute('data-ad-format', 'rewarded');
     document.body.appendChild(adSlot);
-
     (adsbygoogle = window.adsbygoogle || []).push({
       params: { google_ad_client: adConfig.client, google_ad_slot: adConfig.slot },
       type: 'rewarded',
@@ -497,16 +1341,14 @@ function loadRewardedAd(step, btn, cd) {
         if (status && status.reward) {
           onAdRewarded(step, btn);
         } else {
-          // L'utilisateur a fermé la pub sans la regarder
           btn.disabled = false;
-          btn.innerHTML = '<span class="wbico">▶</span> Regarder la publicité (réessaie)';
+          btn.innerHTML = '<span class="wbico">▶</span> Réessayer';
           if (cd) cd.textContent = 'La pub a été fermée avant la fin. Réessaie.';
           setStepStatus(step, 'var(--gold)', 'Pub non complétée');
         }
       }
     });
   } catch(e) {
-    // Fallback si AdSense ne charge pas (bloqueur de pub etc.)
     showAdBlockWarning(step, btn, cd);
   }
 }
@@ -519,7 +1361,6 @@ function showAdBlockWarning(step, btn, cd) {
 }
 
 function onAdRewarded(step, btn) {
-  // Ad complètement regardée → valider le checkpoint
   state.completed[step - 1] = true;
   btn.style.display = 'none';
   setStepStatus(step, 'var(--g)', '✓ Validé !');
@@ -530,28 +1371,23 @@ function onAdRewarded(step, btn) {
   if (cd) cd.textContent = '';
 }
 
-// ── KEY GENERATION ─────────────────────────────────────
 function generateKey() {
-  // Vérifier que les 3 checkpoints sont complétés
   var count = state.completed.filter(Boolean).length;
   if (count < 3) {
     showError('global', 'Les 3 étapes doivent être complétées.');
     return;
   }
-
-  // Hide step 3, show generating
   $('step-3').classList.remove('active');
   $('progress-header').style.display = 'none';
   $('generating-card').style.display = 'block';
   window.scrollTo({ top: 180, behavior: 'smooth' });
 
-  // Appel API bot
   fetch(BOT_API + '/generate-reward-key', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      secret:                REWARD_SECRET,
-      discord_user_id:       state.discordUserId,
+      secret: REWARD_SECRET,
+      discord_user_id: state.discordUserId,
       checkpoints_completed: 3
     })
   })
@@ -564,7 +1400,7 @@ function generateKey() {
       showError('global', d.error || 'Erreur lors de la génération. Réessaie.');
     }
   })
-  .catch(function(e) {
+  .catch(function() {
     $('generating-card').style.display = 'none';
     showError('global', 'Impossible de joindre le serveur. Vérifie ta connexion.');
   });
@@ -573,7 +1409,6 @@ function generateKey() {
 function showSuccess(key) {
   $('key-value').textContent = key;
   $('success-card').classList.add('show');
-  // Stocker la clef en sessionStorage en cas de refresh
   try { sessionStorage.setItem('zekit_reward_key', key); } catch(e) {}
   window.scrollTo({ top: 200, behavior: 'smooth' });
 }
@@ -582,19 +1417,20 @@ function copyKey() {
   var key = $('key-value').textContent;
   navigator.clipboard.writeText(key).then(function() {
     var btn = document.querySelector('.copy-btn');
+    var orig = btn.textContent;
     btn.textContent = '✓ Copié !';
     btn.style.background = 'var(--g)';
     btn.style.color = '#000';
+    btn.style.borderColor = 'var(--g)';
     setTimeout(function() {
-      btn.textContent = 'Copier';
+      btn.textContent = orig;
       btn.style.background = '';
       btn.style.color = '';
+      btn.style.borderColor = '';
     }, 2000);
   });
 }
 
-// ── INIT ───────────────────────────────────────────────
-// Restaurer une clef déjà générée si présente
 window.addEventListener('load', function() {
   try {
     var savedKey = sessionStorage.getItem('zekit_reward_key');
